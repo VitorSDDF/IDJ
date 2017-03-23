@@ -1,0 +1,32 @@
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL_ttf.h"
+
+#include "state.hpp"
+#include <string>
+
+class Game{
+
+	public:
+
+   		static Game& GetInstance(char title[],int witdh,int height);
+		~Game();
+		void Run();
+		SDL_Renderer *GetRenderer();
+		State& GetState();
+		static Game& GetInstance();
+
+	private:
+
+		Game(std::string title,int witdh,int height){};//Private so that it can  not be called
+
+   		Game& operator=(Game const&){};  // assignment operator is private
+
+   		static Game *m_pInstance;
+		SDL_Window *window;
+		SDL_Renderer *renderer;
+		State *state;
+
+};
+
