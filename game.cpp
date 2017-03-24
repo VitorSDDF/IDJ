@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-Game *Game::GetInstance(char title[],int witdh,int height){
+Game *Game::GetInstance(std::string title,int witdh,int height){
 
 	if (!m_pInstance){m_pInstance = new Game(title,witdh,height);}
 
@@ -14,7 +14,7 @@ Game *Game::GetInstance(){
 
 }
 
-Game::Game(char title[],int witdh,int height){
+Game::Game(std::string title,int witdh,int height){
 
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)){
 

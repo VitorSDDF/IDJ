@@ -1,4 +1,11 @@
+#ifndef STATE_HPP
+#define STATE_HPP
+
 #include "sprite.hpp"
+
+#ifndef SPRITE_CLASS
+class Sprite;
+#endif
 
 class State{
 
@@ -14,3 +21,5 @@ class State{
 		bool quitRequested;
 
 };
+
+#endif
