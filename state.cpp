@@ -1,23 +1,23 @@
 #include "state.hpp"
 
-State(){
+State::State(){
 
 }
 
-void Update(){
+void State::Update(){
 
 	if(SDL_QuitRequested()){quitRequested = true;}
 
 }
 
-void Render(){
+void State::Render(){
 
 	bg.render();
 
 }
 
-bool QuitRequested(){return(quitRequested);}
+bool State::QuitRequested(){return(quitRequested);}
 
-void LoadAssets(){}
+void State::LoadAssets(){}
 
 

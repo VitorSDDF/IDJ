@@ -1,4 +1,9 @@
-#include"game.hpp"
+#ifndef GAME
+#define GAME
+
+#include "game.hpp"
+
+#endif
 
 int main (int argc, char** argv){
 

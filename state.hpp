@@ -1,7 +1,5 @@
 #include "sprite.hpp"
 
-class Sprite;
-
 class State{
 
 	public:

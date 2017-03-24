@@ -4,6 +4,7 @@
 #include "SDL2/SDL_ttf.h"
 
 #include "state.hpp"
+
 #include <string>
 
 class Game{

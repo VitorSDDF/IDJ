@@ -1,11 +1,14 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
+#ifndef GAME
+#define GAME
+
 #include "game.hpp"
 
-#include <string>
+#endif
 
-class Game;
+#include <string>
 
 class Sprite{
 
