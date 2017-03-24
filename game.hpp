@@ -10,18 +10,18 @@ class Game{
 
 	public:
 
-   		static Game& GetInstance(char title[],int witdh,int height);
+   		static Game *GetInstance(char title[],int witdh,int height);
 		~Game();
 		void Run();
 		SDL_Renderer *GetRenderer();
-		State& GetState();
-		static Game& GetInstance();
+		State *GetState();
+		static Game *GetInstance();
 
 	private:
 
-		Game(std::string title,int witdh,int height){};//Private so that it can  not be called
+		Game(char title[],int witdh,int height);
 
-   		Game& operator=(Game const&){};  // assignment operator is private
+   		Game& operator=(Game const&);
 
    		static Game *m_pInstance;
 		SDL_Window *window;

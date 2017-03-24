@@ -1,8 +1,6 @@
 #include "game.hpp"
 
-Game& Game::m_pInstance = NULL;
-
-Game& Game::GetInstance(std::string title,int witdh,int height){
+Game *Game::GetInstance(char title[],int witdh,int height){
 
 	if (!m_pInstance){m_pInstance = new Game(title,witdh,height);}
 
@@ -10,13 +8,13 @@ Game& Game::GetInstance(std::string title,int witdh,int height){
 
 }
 
-Game& Game::GetInstance(){
+Game *Game::GetInstance(){
 
 	return m_pInstance;
 
 }
 
-Game::Game(std::string title,int witdh,int height){
+Game::Game(char title[],int witdh,int height){
 
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)){
 
@@ -30,42 +28,42 @@ Game::Game(std::string title,int witdh,int height){
 
 	if(window == nullptr){SDL_Log("Unable to create window in SDL: %s\n", SDL_GetError());}
 
-	renderer = *SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
+	renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
 	if(renderer == nullptr){SDL_Log("Unable to render window in SDL: %s\n", SDL_GetError());}
 
 
 }
 
-~Game(){
+ Game::~Game(){
 
 	IMG_Quit();
-	SDL_DestroyRenderer();
-	SDL_DestroyWindow();
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 
 }
 
-State& GetState(){
+State *Game::GetState(){
 
 	return(this->state);
 
 }
 
-SDL_Renderer *GetRenderer(){
+SDL_Renderer *Game::GetRenderer(){
 
 	return(this->renderer);
 
 }
 
-void Run(){
+void Game::Run(){
 
-	while(!state.QuitRequested()){
+	while(!state->QuitRequested()){
 
-		state.Update();
-		state.Render();
+		state->Update();
+		state->Render();
 
-		SDL_RenderPresent(this.renderer);
+		SDL_RenderPresent(this->renderer);
 
 		SDL_Delay(33);
 

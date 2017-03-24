@@ -4,7 +4,7 @@ State(){
 
 }
 
-void Update(float dt){
+void Update(){
 
 	if(SDL_QuitRequested()){quitRequested = true;}
 

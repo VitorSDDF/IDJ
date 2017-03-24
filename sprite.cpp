@@ -1,25 +1,25 @@
 #include "sprite.hpp"
 
-Sprite(){
+Sprite::Sprite(){
 
 	this->texture = nullptr;
 
 }
 
-Sprite(String file){
+Sprite::Sprite(std::string file){
 
 	this->texture = nullptr;
 	Open(file);	
 
 }
 
-~Sprite(){
+Sprite::~Sprite(){
 
 	SDL_DestroyTexture(this->texture);
 
 }
 
-void Open(String file){
+void Sprite::Open(std::string file){
 
 	if(texture != nullptr){
 	
@@ -35,7 +35,7 @@ void Open(String file){
 
 }
 
-void SetClip (int x,int y,int w,int h){
+void Sprite::SetClip (int x,int y,int w,int h){
 
 	clipRect.x = x;
 	clipRect.y = y;
@@ -44,7 +44,7 @@ void SetClip (int x,int y,int w,int h){
 
 	}
 
-void Render(int x,int y){
+void Sprite::Render(int x,int y){
 
 	SDL_Rect dstrect;
 	dstrect.x = x;
@@ -56,18 +56,18 @@ void Render(int x,int y){
 
 }
 
-int GetWidth(){
+int Sprite::GetWidth(){
 
 	return(widht);
 }
 
-int GetHeight(){
+int Sprite::GetHeight(){
 
 	return(height);
 
 }
 
-bool IsOpen(){
+bool Sprite::IsOpen(){
 
 	texture == nullptr ? return(false):return(true);
 
