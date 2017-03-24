@@ -27,11 +27,11 @@ void Sprite::Open(std::string file){
 
 	}
 	
-	texture = IMG_LoadTexture(Game::GetInstance->GetRenderer(), const char* path);
+	texture = IMG_LoadTexture(Game::GetInstance()->GetRenderer(), const char* path);
 	if(texture == nullptr){SDL_Log("Unable to load texture in SDL: %s\n", SDL_GetError());}
 
 	SDL_QueryTexture(texture,nullptr,nullptr,&width,&height);
-	setClip(SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,widht,height);
+	setClip(SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,width,height);
 
 }
 
