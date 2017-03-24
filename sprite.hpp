@@ -5,6 +5,7 @@
 #define GAME
 
 #include "game.hpp"
+class Game;
 
 #endif
 

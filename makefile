@@ -1,7 +1,7 @@
 all: game executa limpa
 
-game: main.o game.o sprite.o state.o
-	g++ -c main.o game.o sprite.o state.o -o game -std=c++11
+game: main.o game.o
+	g++ -c main.o game.o-o game -std=c++11
 
 main.o: main.cpp game.cpp game.hpp
 	g++ -c main.cpp -std=c++11 -lSDL2 -lSDL2_image
