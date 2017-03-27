@@ -31,6 +31,7 @@ void Sprite::Open(std::string file){
 	if(texture == nullptr){SDL_Log("Unable to load texture in SDL: %s\n", SDL_GetError());
 							exit(1);}
 	SDL_QueryTexture(texture,nullptr,nullptr,&width,&height);
+
 	Sprite::SetClip(0,0,width,height);
 
 }
@@ -59,8 +60,8 @@ void Sprite::Render(int x,int y){
 	dstrect.w = clipRect.w;
 	dstrect.h = clipRect.h;
 	
-	if(Game::GetInstance()->GetRenderer() == nullptr){printf( "%s\t%s\t\n", __FILE__, __LINE__ );exit(1);}
-	if(texture == nullptr){printf( "%s\t%s\t\n", __FILE__, __LINE__ );exit(1);}
+	if(Game::GetInstance()->GetRenderer() == nullptr){printf( "%s\t%d\t\n", __FILE__, __LINE__ );exit(1);}
+	if(texture == nullptr){printf( "%s\t%d\t\n", __FILE__, __LINE__ );exit(1);}
 
 	SDL_RenderCopy(Game::GetInstance()->GetRenderer(),texture,&srcrect,&dstrect);
 
