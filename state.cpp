@@ -2,6 +2,9 @@
 
 State::State(){
 
+	bg = new Sprite();
+	quitRequested = false;
+
 }
 
 void State::Update(){
@@ -12,12 +15,16 @@ void State::Update(){
 
 void State::Render(){
 
-	bg.render();
+	bg->Render(0,0);
 
 }
 
 bool State::QuitRequested(){return(quitRequested);}
 
-void State::LoadAssets(){}
+void State::LoadAssets(){
+	
+	bg->Open(std::string("img/ocean.jpg"));
+
+}
 
 

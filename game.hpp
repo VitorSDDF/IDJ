@@ -1,3 +1,6 @@
+#ifndef GAME_HPP
+#define GAME_HPP
+
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL_mixer.h"
@@ -6,12 +9,16 @@
 #include "state.hpp"
 
 #include <string>
+#include <iostream>
+
+class State;
 
 class Game{
 
 	public:
 
-   		static Game *GetInstance(char title[],int witdh,int height);
+   		static Game *GetInstance(std::string title,int witdh,int height);
+   		static void DeleteInstance();
 		~Game();
 		void Run();
 		SDL_Renderer *GetRenderer();
@@ -20,7 +27,7 @@ class Game{
 
 	private:
 
-		Game(char title[],int witdh,int height);
+		Game(std::string title,int witdh,int height);
 
    		Game& operator=(Game const&);
 
@@ -31,3 +38,4 @@ class Game{
 
 };
 
+#endif

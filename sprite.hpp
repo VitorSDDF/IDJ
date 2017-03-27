@@ -1,16 +1,15 @@
+#ifndef SPRITE_HPP
+#define SPRITE_HPP
+
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
-
-#ifndef GAME
-#define GAME
 
 #include "game.hpp"
 class Game;
 
-#endif
-
 #include <string>
 
+#define SPRITE_CLASS
 class Sprite{
 
 	public:
@@ -34,3 +33,5 @@ class Sprite{
 		SDL_Rect clipRect;
 
 };
+
+#endif
