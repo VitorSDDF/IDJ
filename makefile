@@ -16,7 +16,7 @@ state.o: state.cpp state.hpp sprite.cpp sprite.hpp
 	g++ -c state.cpp -std=c++11 -fmax-errors=3 -Wall -pedantic -g
 
 executa:
-	./game
+	valgrind ./game
 
 limpa: 
 	rm *.o 

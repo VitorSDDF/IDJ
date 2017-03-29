@@ -2,8 +2,16 @@
 #define STATE_HPP
 
 #include "sprite.hpp"
+#include "GameObject"
 
-#include <stdlib.h>
+#include <cstdlib>
+#include <memory>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+
+#define PI 3.14
+#define HIPOTENUSA 200
 
 #ifndef SPRITE_CLASS
 class Sprite;
@@ -14,6 +22,8 @@ class State{
 	public:
 
 		State();
+		~State();
+
 		bool QuitRequested();
 		void LoadAssets();
 		void Update();
@@ -23,6 +33,11 @@ class State{
 
 		Sprite *bg;
 		bool quitRequested;
+
+		std::vector<std::unique_ptr<GameObject>> objectArray;
+
+		void Input();
+		void AddObject(float X,float Y);
 
 };
 

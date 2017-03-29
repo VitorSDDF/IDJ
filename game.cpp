@@ -24,8 +24,6 @@ void Game::DeleteInstance(){
 
 Game::Game(std::string title,int witdh,int height){
 
-	state = new State();
-
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)){
 
         	SDL_LogError(SDL_LOG_CATEGORY_ERROR,"Unable to initialize SDL: %s\n", SDL_GetError());
@@ -42,7 +40,11 @@ Game::Game(std::string title,int witdh,int height){
 
 	if(renderer == nullptr){SDL_Log("Unable to render window in SDL: %s\n", SDL_GetError());}
 
+	state = new State();
 
+	//Cria semente para a função rand() baseado no tempo corrente
+	srand((unsigned)time());
+	
 }
 
  Game::~Game(){
