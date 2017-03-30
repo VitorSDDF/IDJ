@@ -21,7 +21,7 @@ void State::Update(){
 
 	for(unsigned int i = 0; i < objectArray.size();i++){
 
-		if(objectArray[i].isDead()){
+		if((Face *)objectArray[i]->isDead()){
 
 			iterator it = objectArray.begin() + i;
 			objectArray.erase(it);

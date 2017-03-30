@@ -3,9 +3,8 @@
 Face::Face(float x,float y){
 
 	sp.Open(std::string("img/penguinface.png"));
-
-	box.x = x;
-	box.y = y;
+	
+	box = new Rect(x,y,PENGUIN_RADIX,PENGUIN_RADIX);
 
 }
 
@@ -15,15 +14,18 @@ void Face::Damage(int damage){
 
 }
 
-void Face::Update(){}
+void Face::Update(float dt){}
 
 void Face::Render(){
 
-	sp->Render(box.x,box.y);
+	sp.Render(box->getX(),box->getY());
+
 }
 
-bool Face::isDead(){
+bool Face::IsDead(){
 
-	hitpoints <= 0 ? return true : return false;
+	if(hitpoints <= 0){return (true);}
+
+	return(false);
 
 }

@@ -43,7 +43,7 @@ Game::Game(std::string title,int witdh,int height){
 	state = new State();
 
 	//Cria semente para a função rand() baseado no tempo corrente
-	srand((unsigned)time());
+	srand((unsigned)time(NULL));
 	
 }
 
@@ -70,17 +70,15 @@ SDL_Renderer *Game::GetRenderer(){
 
 void Game::Run(){
 
-	while(!state->QuitRequested()){
 
-		state->LoadAssets();
-		state->Update();
-		state->Render();
+	state->LoadAssets();
+	state->Update();
+	state->Render();
 
-		SDL_RenderPresent(this->renderer);
+	SDL_RenderPresent(this->renderer);
 
-		SDL_Delay(33);
+	SDL_Delay(33);
 
-	}
 
 }
 

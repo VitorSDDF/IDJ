@@ -2,13 +2,15 @@
 #define STATE_HPP
 
 #include "sprite.hpp"
-#include "GameObject"
+#include "GameObject.hpp"
+#include "face.hpp"
 
 #include <cstdlib>
 #include <memory>
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <vector>
 
 #define PI 3.14
 #define HIPOTENUSA 200
