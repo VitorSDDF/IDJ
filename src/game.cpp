@@ -82,6 +82,8 @@ void Game::Run(){
 
 	}
 
+	Resources::ClearImages();
+
 }
 
 

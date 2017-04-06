@@ -3,11 +3,9 @@
 State::State(){
 
 	bg = new Sprite();
-    std::cout <<"Criou sprite" << std::endl;
-    tileSet = new TileSet(64,64,std::string("img/tileset.png"));
-    std::cout <<"Criou tileset" << std::endl;
-    tileMap = new TileMap(std::string("map/tileMap.txt"),tileSet);
-    std::cout <<"Criou tilemap" << std::endl;
+
+    tileSet = TileSet::TileSet(64,64,std::string("img/tileset.png"));
+    tileMap = TileMap::TileMap(std::string("map/tileMap.txt",&tileSet));
 
 	quitRequested = false;
 	
@@ -34,6 +32,8 @@ void State::Update(){
 			std::cout << objectArray.size() << std::endl;
 			std::vector<std::unique_ptr<GameObject>>::iterator it = objectArray.begin() + i;
 			objectArray.erase(it);
+			std::cout <<"Entrou is dead" << std::endl;
+			std::cout << objectArray.size() << std::endl;
 
 		}
 
@@ -46,7 +46,7 @@ void State::Render(){
 
 	bg->Render(0,0);
 
-    tileMap->Render(0,0);
+    TileMap.Render(0,0);
 
 	for(unsigned int i = 0; i < objectArray.size();i++){
 

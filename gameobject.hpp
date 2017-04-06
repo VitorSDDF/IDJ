@@ -1,7 +1,7 @@
 #ifndef GAMEOBJ_HPP
 #define GAMEOBJ_HPP
 
-#include "Rect.hpp"
+#include "rect.hpp"
 
 class Rect;
 
@@ -9,7 +9,7 @@ class GameObject{
 
 	public:
 	
-		virtual ~GameObject();
+		//virtual ~GameObject();
 
 		virtual void Update(float dt) = 0;
 		virtual void Render() = 0;
