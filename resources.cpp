@@ -11,12 +11,9 @@ SDL_Texture* Resources::GetImage(std::string file){
 	if(it != imageTable.end()){ return(it->second); }
 	else{
 
-		std::cout <<"it == imageTable.end()" << std::endl;
 
-		SDL_Renderer *renderer = Game::GetInstance()->GetRenderer();
-		SDL_Texture* texture = IMG_LoadTexture(renderer,file.c_str());
+		SDL_Texture* texture = IMG_LoadTexture(Game::GetInstance()->GetRenderer(),file.c_str());
 		
-		std::cout <<"Carregou textura" << std::endl;		
 		if(texture == nullptr){
 
 			SDL_Log("Unable to load texture in SDL: %s\n", SDL_GetError());

@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-Game* Game::m_pInstance = nullptr;
+Game* Game::m_pInstance;
 
 Game *Game::GetInstance(std::string title,int witdh,int height){
 
@@ -11,6 +11,12 @@ Game *Game::GetInstance(std::string title,int witdh,int height){
 }
 
 Game *Game::GetInstance(){
+
+	if(nullptr == m_pInstance){
+
+			printf("Aqui %s|%s:%d\n",__FILE__, __func__,__LINE__);
+
+		}
 
 	return m_pInstance;
 
@@ -40,8 +46,6 @@ Game::Game(std::string title,int witdh,int height){
 
 	if(renderer == nullptr){SDL_Log("Unable to render window in SDL: %s\n", SDL_GetError());}
 
-	state = new State();
-
 	//Cria semente para a função rand() baseado no tempo corrente
 	srand((unsigned)time(NULL));
 	
@@ -67,6 +71,13 @@ SDL_Renderer *Game::GetRenderer(){
 	return(this->renderer);
 
 }
+
+void Game::SetState(State* state){
+
+	this->state = state;
+
+}
+
 
 void Game::Run(){
 

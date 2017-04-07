@@ -12,6 +12,10 @@ Game *Game::GetInstance(std::string title,int witdh,int height){
 
 Game *Game::GetInstance(){
 
+	if(nullptr == Game::GetInstance()){
+			printf("Aqui %s|%s:%d\n",__FILE__, __func__,__LINE__);
+		}
+
 	return m_pInstance;
 
 }
@@ -59,6 +63,12 @@ Game::Game(std::string title,int witdh,int height){
 State *Game::GetState(){
 
 	return(this->state);
+
+}
+
+Game::SetState(State* state){
+
+	this->state = state;
 
 }
 

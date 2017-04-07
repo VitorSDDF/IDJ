@@ -3,6 +3,7 @@
 TileMap::TileMap(std::string file, TileSet* tileSet){
 
 	Load(file);
+	std::cout <<"Carregou Arquivo" << std::endl;
 	this->tileSet = tileSet;
 
 }
@@ -57,18 +58,20 @@ void TileMap::Load(std::string file){
 
 	FILE *fp;
 	int tileAux;
-
+	std::cout <<"Entrou Load" << std::endl;
 	fp = fopen(file.c_str(),"r");
 
-	scanf("%d,%d,%d,\n\n", &mapWidth,&mapHeight,&mapDepth);
+	std::cout <<"Abriu Arquivo" << std::endl;
 
+	fscanf(fp,"%d,%d,%d,", &mapWidth,&mapHeight,&mapDepth);
+	std::cout << mapWidth << mapHeight << mapDepth<< std::endl;
 	for(unsigned int i = 0;i < mapDepth;i ++){
 
 		for(unsigned int j = 0;j < mapHeight;j ++){
 
 			for(unsigned int k = 0;j < mapWidth;k ++){
 
-				scanf("%d,",&tileAux);
+				fscanf(fp,"%d,",&tileAux);
 				tileMatrix.push_back(tileAux - 1);
 
 			}
@@ -81,6 +84,7 @@ void TileMap::Load(std::string file){
 		fgetc(fp);
 		
 	}
+	fclose(fp);
 
 }
 

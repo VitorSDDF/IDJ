@@ -3,7 +3,7 @@ all: game executa limpa
 game:  resources.o tileset.o tilemap.o rect.o sprite.o game.o face.o state.o main.o
 	g++ resources.o tileset.o tilemap.o rect.o state.o face.o game.o sprite.o main.o -o game -std=c++11  -fmax-errors=3 -Wall -pedantic -lSDL2 -lSDL2_image -g
 
-main.o: main.cpp game.cpp game.hpp
+main.o: main.cpp game.cpp game.hpp state.hpp
 	g++ -c main.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
 
 game.o: game.cpp  game.hpp state.cpp state.hpp

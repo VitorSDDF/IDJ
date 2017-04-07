@@ -2,6 +2,7 @@
 #define TILEMAP_HPP
 
 #include "tileset.hpp"
+#include <stdio.h>
 
 #ifndef TILESET_CLASS
 
