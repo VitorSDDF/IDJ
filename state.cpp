@@ -47,7 +47,6 @@ void State::Render(){
 	bg->Render(0,0);
 
     tileMap->Render(0,0);
-
 	for(unsigned int i = 0; i < objectArray.size();i++){
 
 		((Face*) objectArray[i].get())->Render();

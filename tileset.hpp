@@ -3,6 +3,9 @@
 
 #include "sprite.hpp"
 
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+
 #ifndef SPRITE_CLASS
 class Sprite;
 #endif
@@ -13,7 +16,7 @@ class TileSet{
 	public:
 
 		TileSet(int tileWidth,int tileHeight,std::string file);
-		void Render(unsigned int index,float x,float y);
+		void Render(int index,float x,float y);
 		int GetTileWidth();
 		int GetTileHeight();
 

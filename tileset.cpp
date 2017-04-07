@@ -5,18 +5,23 @@ TileSet::TileSet(int tileWidth,int tileHeight,std::string file){
 	this->tileWidth = tileWidth;
 	this->tileHeight = tileHeight;
 
-	tileSet->Open(file);
-	std::cout <<"rodou tileSet->Open(file)" << std::endl;
+	tileSet = new Sprite(file);
 	columns = tileSet->GetWidth()/tileWidth;
 	rows = tileSet->GetHeight()/tileHeight;
 }
 
-void TileSet::Render(unsigned int index,float x,float y){
+void TileSet::Render(int index,float x,float y){
 
 	if((index) >= 0 && (index < (rows * columns) - 1)){
 
-		tileSet->SetClip(x,y,tileWidth,tileHeight);
-	
+		std:: cout << "indice:" <<index <<std::endl;
+		std:: cout << "columns:" <<columns <<std::endl;
+
+		int new_x = index % columns;
+		int new_y = index / columns;
+
+		tileSet->SetClip(new_x,new_y,tileWidth,tileHeight);
+		tileSet->Render(x,y);
 	}
 }
 

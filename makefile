@@ -31,7 +31,7 @@ resources.o: resources.cpp resources.hpp game.hpp
 	g++ -c resources.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
 
 executa:
-	valgrind ./game
+	./game
 
 limpa: 
 	rm *.o 

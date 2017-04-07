@@ -23,17 +23,17 @@ class TileMap{
 	    int& At(int x,int y,int z);
 		void Render(int cameraX,int cameraY);
 		void RenderLayer(int layer,int cameraX,int cameraY);
-		unsigned int GetWidth();
-		unsigned int GetHeight();
-		unsigned int GetDepth ();
+		int GetWidth();
+		int GetHeight();
+		int GetDepth ();
 
 	private:
 
 		std::vector<int> tileMatrix;
 		TileSet* tileSet;
-		unsigned int mapWidth;
-		unsigned int mapHeight;
-		unsigned int mapDepth;
+		int mapWidth;
+		int mapHeight;
+		int mapDepth;
 
 };
 
