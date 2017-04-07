@@ -21,6 +21,8 @@ SDL_Texture* Resources::GetImage(std::string file){
 
 		}
 
+		imageTable.emplace(file,texture);
+		
 		return(texture);
 		
 	}
