@@ -7,6 +7,7 @@
 #include "SDL2/SDL_ttf.h"
 
 #include "state.hpp"
+#include "inputmanager.hpp"
 
 #include <string>
 #include <iostream>
@@ -26,6 +27,9 @@ class Game{
 		SDL_Renderer *GetRenderer();
 		State *GetState();
 		static Game *GetInstance();
+		void SetState(State* state);
+
+		float GetDeltaTime();
 
 	private:
 
@@ -33,10 +37,15 @@ class Game{
 
    		Game& operator=(Game const&);
 
+   		void CalculateDeltaTime();
+   		
    		static Game *m_pInstance;
 		SDL_Window *window;
 		SDL_Renderer *renderer;
 		State *state;
+
+		int frameStart;
+		float dt;
 
 };
 

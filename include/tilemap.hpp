@@ -1,12 +1,24 @@
+#ifndef TILEMAP_HPP
+#define TILEMAP_HPP
+
 #include "tileset.hpp"
+#include <stdio.h>
+
+#ifndef TILESET_CLASS
+
+class TileSet;
+
+#endif
+
+#define TILEMAP_CLASS
 
 class TileMap{
 
 	public:
 
-		TileMap(string file, TileSet* tileSet);
+		TileMap(std::string file, TileSet* tileSet);
 
-		void Load(string file);
+		void Load(std::string file);
 		void SetTileSet(TileSet* tileSet);
 	    int& At(int x,int y,int z);
 		void Render(int cameraX,int cameraY);
@@ -17,10 +29,12 @@ class TileMap{
 
 	private:
 
-	­    std::vector<int> tileMatrix;
-	­    TileSet* tileSet;
-	­    int mapWidth;
-	­    int mapHeight;
-	­    int mapDepth;
+		std::vector<int> tileMatrix;
+		TileSet* tileSet;
+		int mapWidth;
+		int mapHeight;
+		int mapDepth;
 
 };
+
+#endif

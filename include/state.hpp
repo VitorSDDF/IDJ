@@ -4,6 +4,7 @@
 #include "sprite.hpp"
 #include "gameobject.hpp"
 #include "face.hpp"
+#include "inputmanager.hpp"
 
 #include <cstdlib>
 #include <memory>
@@ -22,6 +23,14 @@
 class Sprite;
 #endif
 
+#ifndef TILEMAP_CLASS
+class TileMap;
+#endif
+
+#ifndef TILESET_CLASS
+class TileSet;
+#endif
+
 class State{
 
 	public:
@@ -36,8 +45,8 @@ class State{
 
 	private:
 
-		TileSet tileSet;
-		TileMap tileMap;
+		TileSet *tileSet;
+		TileMap *tileMap;
 		Sprite *bg;
 		bool quitRequested;
 

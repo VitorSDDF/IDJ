@@ -1,6 +1,6 @@
-#include "tilemap.h"
+#include "tilemap.hpp"
 
-TileMap::TileMap(string file, TileSet* tileSet){
+TileMap::TileMap(std::string file, TileSet* tileSet){
 
 	Load(file);
 	this->tileSet = tileSet;
@@ -15,25 +15,26 @@ void TileMap::SetTileSet(TileSet* tileSet){
 
 int& TileMap::At(int x,int y,int z){
 
-	unsigned int index = (z * mapWidth * mapHeight) + (x * mapWidth + y);
+	int index = (z * mapWidth * mapHeight) + (y * mapWidth + x);
 
-	return &tileMatrix[index];
+	return tileMatrix.at(index);
 
 }
 
 void TileMap::RenderLayer(int layer,int cameraX,int cameraY){
 
-	int dx,dy,layerIndex;
-	
-	layerLenght = mapWidth * mapHeight;
-	layerIndex = 0;
+	unsigned int dx,dy;
 
-	for(unsigneg int i = (layer * layerLenght );i < ((layer * layerLenght) + layerLenght); i++){
+	for(int x = 0;x < mapWidth; x++){
 
-		dx = (tileSet.getTileWidth() / mapWidth )* (i % mapWidth);
-		dy = (tileSet.getTileHeight() / mapHeight ) * (i / mapHeight);
+		for(int y = 0;y < mapHeight; y++){
+
+			dx = tileSet->GetTileWidth() * x;
+			dy = tileSet->GetTileHeight() * y;
 		
-		tileSet->Render(i,dx,dy);
+			tileSet->Render(At(x,y,layer),dx,dy);
+
+		}
 
 	}
 
@@ -41,46 +42,28 @@ void TileMap::RenderLayer(int layer,int cameraX,int cameraY){
 
 void TileMap::Render(int cameraX,int cameraY){
 
-	int dx,dy;
+	for(int layer = 0;layer < mapDepth; layer++){
 
-	for(unsigneg int i = 0;i < tileMatrix.size(); i++){
-
-		dx = (tileSet.getTileWidth() / mapWidth )* (i % mapWidth) % tileSet.getTileWidth();
-		dy = (tileSet.getTileHeight() / mapHeight ) * (i / mapHeight) % tileSet.getTileHeight();
-		
-		tileSet->Render(i,dx,dy);
+		RenderLayer(layer,0,0);
 
 	}
 
 }
 
-void TileMap::Load(string file){
+void TileMap::Load(std::string file){
 
 	FILE *fp;
-	tileAux
+	int tileAux;
 
 	fp = fopen(file.c_str(),"r");
 
-	scanf("%d,%d,%d,\n\n", mapWidth,mapHeight,mapDepth);
+	fscanf(fp,"%d,%d,%d,", &mapWidth,&mapHeight,&mapDepth);
+	std::cout << mapWidth <<' ' << mapHeight <<' ' << mapDepth<< std::endl;
+	for(int i = 0;i < mapDepth * mapHeight * mapWidth;i ++){
 
-	for(unsigned int i = 0;i < mapDepth;i ++){
+		fscanf(fp,"%d,",&tileAux);
+		tileMatrix.push_back(tileAux - 1);
 
-		for(unsigned int j = 0;j < mapHeight;j ++){
-
-			for(unsigned int k = 0;j < mapWidth;k ++){
-
-				scanf("%d,", tileAux);
-				tileMatrix.push_back(tileAux - 1);
-
-			}
-
-			fgetc(fp);
-
-		}
-
-		fgetc(fp);
-		fgetc(fp);
-		
 	}
 
 }
@@ -91,7 +74,7 @@ int TileMap::GetWidth(){
 
 }
 
-int TileMap::getHeight(){
+int TileMap::GetHeight(){
 
 	return(mapHeight);
 	

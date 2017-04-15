@@ -5,6 +5,8 @@
 #include "SDL2/SDL_image.h"
 
 #include "game.hpp"
+#include "resources.hpp"
+
 class Game;
 
 #include <string>

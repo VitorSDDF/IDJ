@@ -3,7 +3,6 @@
 TileMap::TileMap(std::string file, TileSet* tileSet){
 
 	Load(file);
-	std::cout <<"Carregou Arquivo" << std::endl;
 	this->tileSet = tileSet;
 
 }
@@ -43,7 +42,7 @@ void TileMap::RenderLayer(int layer,int cameraX,int cameraY){
 
 void TileMap::Render(int cameraX,int cameraY){
 
-	for(unsigned int layer = 0;layer < mapDepth; layer++){
+	for(int layer = 0;layer < mapDepth; layer++){
 
 		RenderLayer(layer,0,0);
 
@@ -55,10 +54,8 @@ void TileMap::Load(std::string file){
 
 	FILE *fp;
 	int tileAux;
-	std::cout <<"Entrou Load" << std::endl;
-	fp = fopen(file.c_str(),"r");
 
-	std::cout <<"Abriu Arquivo" << std::endl;
+	fp = fopen(file.c_str(),"r");
 
 	fscanf(fp,"%d,%d,%d,", &mapWidth,&mapHeight,&mapDepth);
 	std::cout << mapWidth <<' ' << mapHeight <<' ' << mapDepth<< std::endl;
@@ -69,21 +66,15 @@ void TileMap::Load(std::string file){
 			for(int k = 0;k < mapWidth;k ++){
 
 				fscanf(fp,"%d,",&tileAux);
-				std::cout <<tileAux;
 				tileMatrix.push_back(tileAux - 1);
-
+				std::cout << tileAux <<'\t';
 			}
 			std::cout <<std::endl;
 
-			fgetc(fp);
-
 		}
-
-		fgetc(fp);
-		fgetc(fp);
+		std::cout <<std::endl;
 		
 	}
-	fclose(fp);
 
 }
 

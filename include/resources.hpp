@@ -1,14 +1,25 @@
+#ifndef RESOURCES_HPP
+#define RESOURCES_HPP
+
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+
+#include "game.hpp"
+
 #include <unordered_map>
 
 class Resources{
 
 	public:
 		
-		SDL_Texture* GetImage (string file);
-		void ClearImages();
+		static SDL_Texture* GetImage(std::string file);
+		static void ClearImages();
 
 	private:
 
-		std::unordered_map<std::string,SDL_Texture*> imageTable;
+		static std::unordered_map<std::string,SDL_Texture*> imageTable;
 
-}
+		Resources();
+
+};
+#endif

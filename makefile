@@ -1,38 +1,89 @@
-all: game executa limpa
+#-------------------------------------------------------------
+#Assume-se uma distribuição Linux como sistema operacional padrão
+#-------------------------------------------------------------
 
-game:  resources.o tileset.o tilemap.o rect.o sprite.o game.o face.o state.o main.o
-	g++ resources.o tileset.o tilemap.o rect.o state.o face.o game.o sprite.o main.o -o game -std=c++11  -fmax-errors=3 -Wall -pedantic -lSDL2 -lSDL2_image -g
+COMPILER = g++
+#comando para remover pastas
+RMDIR = rm -rf
+#comando para remover arquivos
+RM = rm -f
 
-main.o: main.cpp game.cpp game.hpp state.hpp
-	g++ -c main.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+#Flags para geração automática de dependências
+DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_PATH)/$.d
+LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm
+FLAGS= -std=c++11 -Wall -pedantic -Wextra -fmax-errors=5
 
-game.o: game.cpp  game.hpp state.cpp state.hpp
-	g++ -c game.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
-	
-sprite.o:sprite.cpp sprite.hpp resources.hpp
-	g++ -c sprite.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+INC_PATH = include
+SRC_PATH = src
+BIN_PATH = bin
+DEP_PATH = dep
 
-state.o: state.cpp state.hpp sprite.cpp sprite.hpp gameobject.hpp face.hpp tileset.hpp tilemap.hpp
-	g++ -c state.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+#Uma lista de arquivos por extensão:
+CPP_FILES= $(wildcard $(SRC_PATH)/*.cpp)
+OBJ_FILES= $(addprefix $(BIN_PATH)/,$(notdir $(CPP_FILES:.cpp=.o)))
+DEP_FILES = $(wildcard $(DEP_PATH)/*.d)
 
-face.o: face.cpp face.hpp sprite.hpp gameobject.hpp rect.hpp 
-	g++ -c face.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+#Nome do executável
+EXEC = JOGO
 
-rect.o: rect.cpp rect.hpp
-	g++ -c rect.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+#-------------------------------------------------------------
+#Caso o sistema seja windows
+#-------------------------------------------------------------
+ifeq ($(OS),Windows_NT)
+#comando para remover um diretório recursivamente
+RMDIR= rd /s /q
+#comando para deletar um único arquivo
+EM = del
 
-tilemap.o: tilemap.cpp tilemap.hpp tileset.hpp
-	g++ -c tilemap.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+#path da SDL
+SDL_PATH = C:\DL2-2.0.5\x86_64-w64-mingw32
 
-tileset.o: tileset.cpp tileset.hpp sprite.hpp
-	g++ -c tileset.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+#Nome do executável
+EXEC := $(EXEC).exe
 
-resources.o: resources.cpp resources.hpp game.hpp
-	g++ -c resources.cpp -std=c++11 -fmax-errors=5 -Wall -pedantic -g
+else
+UNAME_S := $(shell uname -s)
 
-executa:
-	./game
+#-------------------------------------------------------------
+#Caso o sistema seja windows
+#-------------------------------------------------------------
 
-limpa: 
-	rm *.o 
+ifeq ($(UNAME_S), Darwin)
+
+LIBS = -lm -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SDL2_ttf
+
+endif
+endif
+
+all: $(EXEC)
+
+$(EXEC): $(OBJ_FILES)
+	$(COMPILER) -o $@ $^ $(LIBS)
+
+$(BIN_PATH)/%.o: $(SRC_PATH)/%.cpp
+
+ifeq ($(OS), Windows_NT)
+	@if not exist $(DEP_PATH) @ mkdir $(DEP_PATH)
+	@if not exist $(BIN_PATH) @ mkdir $(BIN_PATH)
+else
+	@mkdir -p $(DEP_PATH) $(BIN_PATH)
+endif
+
+	$(COMPILER) $(DEP_FLAGS) -c -o $@ $< -I$(INC_PATH) $(FLAGS)
+
+-include $(DEP_FILES)
+
+clean:
+	$(RMDIR) $(BIN_PATH) $(DEP_PATH)
+	$(RM) $(EXEC)
+
+.PHONY: debug clean release again
+#regra pra debug
+print-% : ; @echo $* = $($*)
+
+debug: FLAGS += -g -O0
+debug: all
+
+release: FLAGS += -O3 -mtune=native
+release: all
 

@@ -3,11 +3,8 @@
 State::State(){
 
 	bg = new Sprite();
-    std::cout <<"Criou sprite" << std::endl;
     tileSet = new TileSet(64,64,std::string("img/tileset.png"));
-    std::cout <<"Criou tileset" << std::endl;
     tileMap = new TileMap(std::string("map/tileMap.txt"),tileSet);
-    std::cout <<"Criou tilemap" << std::endl;
 
 	quitRequested = false;
 	
@@ -97,9 +94,6 @@ void State::Input() {
                     // Aplica dano
                     ((Face*) objectArray[i].get())->Damage(rand() % 10 + 10);
                     // Sai do loop (só queremos acertar um)
-                    std::cout <<"Entrou damage" << std::endl;
-                    std::cout <<"Mouse " << mouseX << ' ' << mouseY <<std::endl;
-                    std::cout <<"Box " << ((Face*)objectArray[i].get())->box->x << ' ' << ((Face*)objectArray[i].get())->box->y <<std::endl;
 
                     break;
                 }
@@ -121,9 +115,6 @@ void State::Input() {
 
 					float faceX = HIPOTENUSA * std::cos(angle);
             		float faceY = HIPOTENUSA * std::sin(angle);
-
-					//std::cout <<"Mouse" << mouseX << ' ' << mouseY <<std::endl;
-					//std::cout <<"Face" <<faceX << ' ' << faceY <<std::endl;
 	
 					AddObject(mouseX + faceX + PENGUIN_RADIX/2,mouseY + faceY + PENGUIN_RADIX/2);
 

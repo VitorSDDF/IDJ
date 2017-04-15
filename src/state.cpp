@@ -3,9 +3,8 @@
 State::State(){
 
 	bg = new Sprite();
-
-    tileSet = TileSet::TileSet(64,64,std::string("img/tileset.png"));
-    tileMap = TileMap::TileMap(std::string("map/tileMap.txt",&tileSet));
+    tileSet = new TileSet(64,64,std::string("img/tileset.png"));
+    tileMap = new TileMap(std::string("map/tileMap.txt"),tileSet);
 
 	quitRequested = false;
 	
@@ -19,21 +18,36 @@ State::~State(){
 
 void State::Update(){
 
-	if(SDL_QuitRequested()){quitRequested = true;}
+    if(InputManager::GetInstance().QuitRequested()){
 
-	State::Input();
+        quitRequested = true;
+
+    }
+    //Cria face ao se apertar espaço
+    if(InputManager::GetInstance().KeyPress(SDLK_SPACE)){
+
+        //x’=x*cosθ ‐y*sinθ
+        //y’=y*cosθ +x*sinθ
+
+        float angle = (rand() % 6 + 1) ;
+
+        float faceX = HIPOTENUSA * std::cos(angle);
+        float faceY = HIPOTENUSA * std::sin(angle);
+    
+        AddObject(InputManager::GetInstance().GetMouseX() + faceX + PENGUIN_RADIX/2,
+                  InputManager::GetInstance().GetMouseY() + faceY + PENGUIN_RADIX/2);
+
+    }
 
 	for(unsigned int i = 0; i < objectArray.size();i++){
 
-		//std::cout <<"Damage:" << ((Face *)objectArray[i].get())->getHitpoints() << std::endl;
+        ((Face*) objectArray[i].get())->Update(0);
 
 		if(((Face *)objectArray[i].get())->IsDead()){
 
 			std::cout << objectArray.size() << std::endl;
 			std::vector<std::unique_ptr<GameObject>>::iterator it = objectArray.begin() + i;
 			objectArray.erase(it);
-			std::cout <<"Entrou is dead" << std::endl;
-			std::cout << objectArray.size() << std::endl;
 
 		}
 
@@ -46,8 +60,7 @@ void State::Render(){
 
 	bg->Render(0,0);
 
-    TileMap.Render(0,0);
-
+    tileMap->Render(0,0);
 	for(unsigned int i = 0; i < objectArray.size();i++){
 
 		((Face*) objectArray[i].get())->Render();
@@ -98,9 +111,6 @@ void State::Input() {
                     // Aplica dano
                     ((Face*) objectArray[i].get())->Damage(rand() % 10 + 10);
                     // Sai do loop (só queremos acertar um)
-                    std::cout <<"Entrou damage" << std::endl;
-                    std::cout <<"Mouse " << mouseX << ' ' << mouseY <<std::endl;
-                    std::cout <<"Box " << ((Face*)objectArray[i].get())->box->x << ' ' << ((Face*)objectArray[i].get())->box->y <<std::endl;
 
                     break;
                 }
@@ -122,9 +132,6 @@ void State::Input() {
 
 					float faceX = HIPOTENUSA * std::cos(angle);
             		float faceY = HIPOTENUSA * std::sin(angle);
-
-					//std::cout <<"Mouse" << mouseX << ' ' << mouseY <<std::endl;
-					//std::cout <<"Face" <<faceX << ' ' << faceY <<std::endl;
 	
 					AddObject(mouseX + faceX + PENGUIN_RADIX/2,mouseY + faceY + PENGUIN_RADIX/2);
 

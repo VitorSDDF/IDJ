@@ -14,13 +14,10 @@ void TileSet::Render(int index,float x,float y){
 
 	if((index) >= 0 && (index < (rows * columns) - 1)){
 
-		std:: cout << "indice:" <<index <<std::endl;
-		std:: cout << "columns:" <<columns <<std::endl;
-
 		int new_x = index % columns;
 		int new_y = index / columns;
 
-		tileSet->SetClip(new_x,new_y,tileWidth,tileHeight);
+		tileSet->SetClip(new_x*tileWidth,new_y*tileHeight,tileWidth,tileHeight);
 		tileSet->Render(x,y);
 	}
 }

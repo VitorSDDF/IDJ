@@ -26,3 +26,9 @@ bool Rect::IsInside(float x,float y){
 	return((x <= this->x + w)&&(x >= this->x)&&(y <= this->y + h)&&(y >= this->y));
 
 }
+
+Vec2 Rect::Center(){
+
+	return(new Vec2(x + w/2,y + h/2));
+	
+}

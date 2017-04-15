@@ -21,9 +21,10 @@ Sprite::~Sprite(){
 
 void Sprite::Open(std::string file){
 
-	Resources::GetImage(file.c_str());
+	texture = Resources::GetImage(file);
+	//std::cout <<"rodou GetImage(file.c_str())" << std::endl;
 	SDL_QueryTexture(texture,nullptr,nullptr,&width,&height);
-
+	//std::cout <<"SDL_QueryTexture" << std::endl;
 	Sprite::SetClip(0,0,width,height);
 
 }

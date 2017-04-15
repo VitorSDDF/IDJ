@@ -23,7 +23,20 @@ int Face::getHitpoints(){
 
 }
 
-void Face::Update(float dt){}
+void Face::Update(float dt){
+
+	// Se o houver clique...
+    if(InputManager::GetInstance().MousePress(SDL_BUTTON_LEFT)){
+
+    		float x = InputManager::GetInstance().GetMouseX();
+    		float y = InputManager::GetInstance().GetMouseY();
+
+            if(box->IsInside(x,y)){Damage(rand() % 10 + 10);}
+           
+    
+    }
+
+}
 
 void Face::Render(){
 
