@@ -1,15 +1,28 @@
+#ifndef CAMERA_HPP
+#define CAMERA_HPP
+
+#define CAMERA_MOVE_SPEED 100
+
+#include "vec2.hpp"
+#include "gameobject.hpp"
+#include "game.hpp"
+
 class Camera{
 	
 	public:
 
-		void Follow(GameObject* newFocus);
-		void Unfollow();
-		void Update(float dt);
-		Vec2 pos;
-		Vec2 speed;
+		static void Follow(GameObject* newFocus);
+		static void Unfollow();
+		static void Update(float dt);
+		static Vec2 pos;
+		static Vec2 speed;
 
 	private:
 
-		GameObject* focus;
+		Camera();
+
+		static GameObject* focus;
 
 };
+
+#endif

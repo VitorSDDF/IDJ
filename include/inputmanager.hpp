@@ -7,6 +7,7 @@
 #include "SDL2/SDL_ttf.h"
 
 #include <unordered_map>
+#include <iostream>
 
 #define LEFT_ARROW_KEY SDLK_LEFT
 #define RIGHT_ARROW_KEY SDLK_RIGHT

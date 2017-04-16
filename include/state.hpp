@@ -5,6 +5,7 @@
 #include "gameobject.hpp"
 #include "face.hpp"
 #include "inputmanager.hpp"
+#include "camera.hpp"
 
 #include <cstdlib>
 #include <memory>

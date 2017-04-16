@@ -1,3 +1,6 @@
+#ifndef VEC2_HPP
+#define VEC2_HPP
+
 class Vec2{
 	
 	private:
@@ -6,8 +9,19 @@ class Vec2{
 
 	public:
 
+		Vec2();
 		Vec2(float x,float y);
-		Vec2 operator+(Vec2 const &b)const;
-		Vec2 operator-(Vec2 const &b) const;
 
-}
+		void SetX(float x);
+		void SetY(float y);
+
+		float GetX();
+		float GetY();
+
+		Vec2 operator+(Vec2 const &b) const;
+		Vec2 operator-(Vec2 const &b) const;
+		Vec2 operator*(float b) const;
+
+};
+
+#endif

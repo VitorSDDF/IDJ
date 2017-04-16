@@ -1,15 +1,20 @@
-bin/game.o: src/game.cpp include/game.hpp include/state.hpp \
- include/sprite.hpp include/game.hpp include/resources.hpp \
- include/gameobject.hpp include/rect.hpp include/face.hpp \
- include/inputmanager.hpp include/tileset.hpp include/tilemap.hpp
-
-include/game.hpp:
+bin/state.o: src/state.cpp include/state.hpp include/sprite.hpp \
+ include/game.hpp include/state.hpp include/inputmanager.hpp \
+ include/vec2.hpp include/resources.hpp include/gameobject.hpp \
+ include/rect.hpp include/face.hpp include/camera.hpp include/tileset.hpp \
+ include/tilemap.hpp
 
 include/state.hpp:
 
 include/sprite.hpp:
 
 include/game.hpp:
+
+include/state.hpp:
+
+include/inputmanager.hpp:
+
+include/vec2.hpp:
 
 include/resources.hpp:
 
@@ -19,7 +24,7 @@ include/rect.hpp:
 
 include/face.hpp:
 
-include/inputmanager.hpp:
+include/camera.hpp:
 
 include/tileset.hpp:
 

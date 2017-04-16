@@ -31,7 +31,6 @@ InputManager& InputManager::GetInstance(){
 void InputManager::Update(){
 
 	SDL_Event event;
-    int mouseX, mouseY;
 
     updateCounter ++;
     quitRequested = false;
@@ -63,21 +62,9 @@ void InputManager::Update(){
         }
         if(event.type == SDL_KEYDOWN){
 
-        	if(!event.key.repeat){
-	            // Se a tecla for ESC, setar a flag de quit
-	            if(event.key.keysym.sym == SDLK_ESCAPE ) {
+			keyState[event.key.keysym.sym] = true;
+	        keyUpdate[event.key.keysym.sym] = updateCounter;
 
-	                quitRequested = true;
-
-	            }
-				else {
-
-	            	keyState[event.key.keysym.sym] = true;
-	            	keyUpdate[event.key.keysym.sym] = updateCounter;
-	            			
-	            }
-
-	        }
         }
         if(event.type == SDL_KEYUP){
 
@@ -89,13 +76,18 @@ void InputManager::Update(){
 
 bool InputManager::KeyPress(int key){
 
-	return(keyUpdate.at(key) == updateCounter);
+  try{return(keyUpdate.at(key) == updateCounter);}
+  catch (const std::out_of_range& oor){}
+  return false;
 
 }
 
 bool InputManager::KeyRelease(int key){
 
-	return(keyUpdate.at(key) != updateCounter);
+	try{return(keyUpdate.at(key) != updateCounter);}
+  	catch (const std::out_of_range& oor){}
+  	return false;
+	
 
 }
 

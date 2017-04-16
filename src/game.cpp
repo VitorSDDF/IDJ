@@ -87,7 +87,7 @@ void Game::CalculateDeltaTime(){
 	int aux_time = frameStart;
 	frameStart = (int)SDL_GetTicks();
 	//TRansformando de segundos para milisegundos
-	dt = (float)((frameStart - aux_time) * 1000);
+	dt = (((float)(frameStart - aux_time)) / 1000);
 
 }
 
@@ -95,6 +95,18 @@ float Game::GetDeltaTime(){
 
 	return(dt);
 
+}
+
+Vec2 Game::GetWindowDimensions(void){
+
+	int w,h;
+
+	SDL_GetWindowSize(window,&w,&h);
+
+	Vec2 ret((float)w,(float)h);
+
+	//retorna  um vetor de dimensão dois na qual a primeira é a largura e a segunda é a altura
+	return ret;
 }
 
 void Game::Run(){
@@ -106,12 +118,15 @@ void Game::Run(){
 		CalculateDeltaTime();
 
 		state->LoadAssets();
+
 		InputManager::GetInstance().Update();
+
 		state->Update();
+		
 		state->Render();
 
 		SDL_RenderPresent(this->renderer);
-
+		
 		SDL_Delay(33);
 
 	}

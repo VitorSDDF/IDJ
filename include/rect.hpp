@@ -1,6 +1,8 @@
 #ifndef RECT_HPP
 #define RECT_HPP
 
+#include "vec2.hpp"
+
 class Rect{
 
 	public:
@@ -11,6 +13,7 @@ class Rect{
 		
 		float x,y,w,h;
 		bool IsInside(float x,float y);
+		Vec2 Center();
 
 };
 

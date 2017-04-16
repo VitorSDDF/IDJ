@@ -8,6 +8,7 @@
 
 #include "state.hpp"
 #include "inputmanager.hpp"
+#include "vec2.hpp"
 
 #include <string>
 #include <iostream>
@@ -30,6 +31,7 @@ class Game{
 		void SetState(State* state);
 
 		float GetDeltaTime();
+		Vec2 GetWindowDimensions(void);
 
 	private:
 
@@ -38,7 +40,7 @@ class Game{
    		Game& operator=(Game const&);
 
    		void CalculateDeltaTime();
-   		
+
    		static Game *m_pInstance;
 		SDL_Window *window;
 		SDL_Renderer *renderer;

@@ -58,8 +58,8 @@ void TileMap::Load(std::string file){
 	fp = fopen(file.c_str(),"r");
 
 	fscanf(fp,"%d,%d,%d,", &mapWidth,&mapHeight,&mapDepth);
-	std::cout << mapWidth <<' ' << mapHeight <<' ' << mapDepth<< std::endl;
-	for(int i = 0;i < mapDepth * mapHeight * mapWidth;i ++){
+		
+		for(int i = 0;i < mapDepth * mapHeight * mapWidth;i ++){
 
 		fscanf(fp,"%d,",&tileAux);
 		tileMatrix.push_back(tileAux - 1);

@@ -7,6 +7,7 @@
 #include "SDL2/SDL_ttf.h"
 
 #include "state.hpp"
+#include "vec2.hpp"
 
 #include <string>
 #include <iostream>
