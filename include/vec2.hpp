@@ -1,6 +1,8 @@
 #ifndef VEC2_HPP
 #define VEC2_HPP
 
+#include <cmath>
+
 class Vec2{
 	
 	private:
@@ -17,6 +19,8 @@ class Vec2{
 
 		float GetX();
 		float GetY();
+
+		Vec2 distance(Vec2 destino);
 
 		Vec2 operator+(Vec2 const &b) const;
 		Vec2 operator-(Vec2 const &b) const;

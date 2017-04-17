@@ -9,13 +9,13 @@ Rect::Rect(float x,float y,float w,float h){
 
 }
 
-float Rect::getX(){
+float Rect::GetX(){
 
 	return this->x;
 
 }
 
-float Rect::getY(){
+float Rect::GetY(){
 
 	return this->y;
 	
@@ -31,4 +31,15 @@ Vec2 Rect::Center(){
 
 	return(Vec2(x + w/2,y + h/2));
 
+}
+
+void Rect::SetX(float x){
+
+	this->x = x;
+
+}
+
+void Rect::SetY(float y){
+
+	this->y = y;
 }

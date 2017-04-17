@@ -1,6 +1,8 @@
 #ifndef TILEMAP_HPP
 #define TILEMAP_HPP
 
+# define PARALLAX_SCROLLING_CONST 5
+
 #include "tileset.hpp"
 #include <stdio.h>
 

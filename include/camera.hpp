@@ -1,7 +1,7 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
-#define CAMERA_MOVE_SPEED 100
+#define CAMERA_MOVE_SPEED 20
 
 #include "vec2.hpp"
 #include "gameobject.hpp"

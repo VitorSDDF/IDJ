@@ -3,7 +3,6 @@
 
 #include "sprite.hpp"
 #include "gameobject.hpp"
-#include "face.hpp"
 #include "inputmanager.hpp"
 #include "camera.hpp"
 

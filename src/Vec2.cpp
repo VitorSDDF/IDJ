@@ -28,7 +28,7 @@ float Vec2::GetX(){
 float Vec2::GetY(){
 
 	return(y);
-	
+
 }
 
 Vec2 Vec2::operator+(Vec2 const &b)const{
@@ -46,5 +46,41 @@ Vec2 Vec2::operator-(Vec2 const &b) const{
 Vec2 Vec2::operator*(float b) const{
 
 	return Vec2(x*b, y*b);//esse aqui zoa a magnetude
+
+}
+
+Vec2 Vec2::distance(Vec2 destino){
+
+	float dx,dy;
+	//Calcula x
+	if(x >= 0.0 && destino.GetX() >= 0.0){dx = destino.GetX() - x;}
+	else if(destino.GetX() > x){
+
+		if(destino.GetX() >= 0.0 && x <= 0.0){dx = destino.GetX() - x;}
+		else{dx = std::abs(destino.GetX() - x);}//(c0 < ZERO_DOUBLE && c1 < ZERO_DOUBLE)
+	
+	}
+	else{//(c0 > c1)
+
+		if(x >= 0.0 && destino.GetX() <= 0.0){dx = -(x - destino.GetX());}
+		else{dx = x - destino.GetX();}//(c0 < ZERO_DOUBLE && c1 < ZERO_DOUBLE)
+
+	}
+	//Calcula y
+	if(y >= 0.0 && destino.GetY() >= 0.0){dy = destino.GetY() - y;}
+	else if(destino.GetY() > y){
+
+		if(destino.GetY() >= 0.0 && y <= 0.0){dy = destino.GetY() - y;}
+		else{dy = std::abs(destino.GetY() - y);}//(c0 < ZERO_DOUBLE && c1 < ZERO_DOUBLE)
+	
+	}
+	else{//(c0 > c1)
+
+		if(y >= 0.0 && destino.GetY() <= 0.0){dy = -(y - destino.GetY());}
+		else{dy = y - destino.GetY();}//(c0 < ZERO_DOUBLE && c1 < ZERO_DOUBLE)
+
+	}
+
+	return(Vec2(dx,dy));
 
 }
