@@ -20,7 +20,8 @@ class Vec2{
 		float GetX();
 		float GetY();
 
-		Vec2 distance(Vec2 destino);
+		Vec2 Distance(Vec2 destino);
+		float Magnitude();
 
 		Vec2 operator+(Vec2 const &b) const;
 		Vec2 operator-(Vec2 const &b) const;

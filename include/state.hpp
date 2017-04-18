@@ -5,6 +5,7 @@
 #include "gameobject.hpp"
 #include "inputmanager.hpp"
 #include "camera.hpp"
+#include "alien.hpp"
 
 #include <cstdlib>
 #include <memory>

@@ -11,14 +11,25 @@ Rect::Rect(float x,float y,float w,float h){
 
 float Rect::GetX(){
 
-	return this->x;
+	return(this->x);
 
 }
 
 float Rect::GetY(){
 
-	return this->y;
+	return(this->y);
 	
+}
+
+float Rect::GetW(){
+
+	return(this->w);
+
+}
+float Rect::GetH(){
+
+	return(this->h);
+
 }
 
 bool Rect::IsInside(float x,float y){

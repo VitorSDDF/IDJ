@@ -42,23 +42,9 @@ void TileMap::RenderLayer(int layer,int cameraX,int cameraY){
 
 void TileMap::Render(int cameraX,int cameraY){
 
-	int x0,y0;
-
 	for(int layer = 0;layer < mapDepth; layer++){
 
-	if(layer == 0){
-
-		x0 = cameraX + PARALLAX_SCROLLING_CONST;
-		y0 = cameraY + PARALLAX_SCROLLING_CONST;
-	}
-	else{
-
-		x0 = cameraX;
-		x0 = cameraY;
-
-	}
-
-		RenderLayer(layer,x0,y0);
+		RenderLayer(layer,cameraX,cameraY);
 
 	}
 

@@ -10,11 +10,19 @@ class Rect{
 		Rect(float x,float y,float w,float h);
 		float GetX();
 		float GetY();		
-		float x,y,w,h;
+		float GetW();
+		float GetH();		
 		bool IsInside(float x,float y);
 		void SetX(float x);
 		void SetY(float x);
+
 		Vec2 Center();
+
+	private:
+
+		float x,y,w,h;
+
+
 
 };
 

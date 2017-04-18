@@ -31,6 +31,12 @@ float Vec2::GetY(){
 
 }
 
+float Vec2::Magnitude(){
+
+	return(std::sqrt(y*y + x*x));
+
+}
+
 Vec2 Vec2::operator+(Vec2 const &b)const{
 
 	return Vec2(x+b.x, y+b.y);
@@ -49,7 +55,7 @@ Vec2 Vec2::operator*(float b) const{
 
 }
 
-Vec2 Vec2::distance(Vec2 destino){
+Vec2 Vec2::Distance(Vec2 destino){
 
 	float dx,dy;
 	//Calcula x

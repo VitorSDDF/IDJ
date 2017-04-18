@@ -1,3 +1,13 @@
+
+#ifndef ALIEN_HPP
+#define ALIEN_HPP
+
+#define INITIAL_ALIEN_HP 5
+
+#ifndef SPRITE_CLASS
+class Sprite;
+#endif
+
 #include "inputmanager.hpp"
 #include "gameobject.hpp"
 #include "sprite.hpp"
@@ -29,10 +39,12 @@ class Alien : public GameObject{
 			
 		};
 
-		Sprite sp;
+		Sprite *sp;
 		Vec2 speed;
 		int hp;
 		std::queue<Action> taskQueue;
 		//std::vector<Minion> minionArray;
 
 };
+
+#endif
