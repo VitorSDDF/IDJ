@@ -7,7 +7,14 @@ Alien::Alien(float x,float y,int nMinions){
 	box = new Rect(x,y,sp->GetWidth(),sp->GetHeight());
 
 	hp = INITIAL_ALIEN_HP;
-	//3)Popular array de minions quando o alien estiver funcional
+	//Popular array de minions quando o alien estiver funcional
+	for(int i = 0;i < nMinions; i++ ){
+
+		minionArray.push_back(Minion(this,(2* PI/nMinions) * i));
+		std::cout << "criou minion "<< i << std::endl;
+
+	}
+
 }
 
 Alien::~Alien(){}
@@ -36,23 +43,19 @@ void Alien::Update(float dt){
 
 		if(action.type == Action::MOVE){
 
-			speed =  box->Center().Distance(action.pos) * (1.0/(dt));
+			speed = (box->Center().Distance(action.pos)).Normalize() * ALIEN_VEL;
 
-			//std::cout << "SpeedX: "<< speed.GetX() << std::endl;
-			//std::cout << "SpeedY: "<< speed.GetY() << std::endl;
-
-			if((speed * (dt)).Magnitude() > lastDistance){
+			if((speed * dt).Magnitude() > lastDistance){
 
 				box->SetX(action.pos.GetX() - (box->GetW()/2));
 				box->SetY(action.pos.GetY() - (box->GetH()/2));
 				taskQueue.pop();
-				std::cout <<"Retirou" << std::endl;
 
 			}
 			else{
 
-				box->SetX((box->Center() + (speed * dt)).GetX() - (box->GetH()/2));
-				box->SetY((box->Center() + (speed * dt)).GetY() - (box->GetH()/2));
+				box->SetX(box->Center().GetX() + (speed * dt).GetX() - box->GetW()/2);
+				box->SetY(box->Center().GetY() + (speed * dt).GetY() - box->GetH()/2);
 
 			}
 
@@ -64,6 +67,12 @@ void Alien::Update(float dt){
 		}
 
 	}
+
+	for(unsigned int i = 0;i < minionArray.size();i++){
+
+		minionArray[i].Update(dt);
+
+	}
 }
 
 void Alien::Render(){
@@ -71,6 +80,11 @@ void Alien::Render(){
 	//Tratar movimentacao da camera
 	sp->Render(box->GetX(),box->GetY());
 	//Chamar a renderização de cada Minion.
+	for(unsigned int i = 0;i < minionArray.size();i++){
+
+		minionArray[i].Render();
+
+	}
 
 }
 bool Alien::IsDead(){

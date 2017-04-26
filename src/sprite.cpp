@@ -36,7 +36,7 @@ void Sprite::SetClip (int x,int y,int w,int h){
 
 	}
 
-void Sprite::Render(int x,int y){
+void Sprite::Render(int x,int y,float angle){
 
 	SDL_Rect dstrect;
 
@@ -48,7 +48,8 @@ void Sprite::Render(int x,int y){
 	if(Game::GetInstance()->GetRenderer() == nullptr){printf( "%s\t%d\t\n", __FILE__, __LINE__ );exit(1);}
 	if(texture == nullptr){printf( "%s\t%d\t\n", __FILE__, __LINE__ );exit(1);}
 
-	SDL_RenderCopy(Game::GetInstance()->GetRenderer(),texture,&clipRect,&dstrect);
+	//SDL_RenderCopy(Game::GetInstance()->GetRenderer(),texture,&clipRect,&dstrect);
+	SDL_RenderCopyEx(Game::GetInstance()->GetRenderer(), texture, &clipRect, &dstrect, angle,NULL, SDL_FLIP_NONE);
 
 }
 

@@ -26,6 +26,7 @@ float Rect::GetW(){
 	return(this->w);
 
 }
+
 float Rect::GetH(){
 
 	return(this->h);

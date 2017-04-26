@@ -87,7 +87,7 @@ void Game::CalculateDeltaTime(){
 	int aux_time = frameStart;
 	frameStart = (int)SDL_GetTicks();
 	//TRansformando de segundos para milisegundos
-	dt = (((float)(frameStart - aux_time)) / 1000);
+	dt = (((float)(frameStart - aux_time)) / 1000.0f);
 
 }
 
@@ -126,8 +126,8 @@ void Game::Run(){
 		state->Render();
 
 		SDL_RenderPresent(this->renderer);
-		
-		SDL_Delay(33);
+
+		//SDL_Delay(33);
 
 	}
 

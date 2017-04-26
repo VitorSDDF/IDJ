@@ -8,9 +8,20 @@
 class Sprite;
 #endif
 
+#ifndef SPRITE_CLASS
+class Sprite;
+#endif
+
+#ifndef MINION_CLASS
+class Minion;
+#endif
+
+#define ALIEN_VEL 100
+
 #include "inputmanager.hpp"
 #include "gameobject.hpp"
 #include "sprite.hpp"
+#include "minion.hpp"
 
 #include <queue>
 #include <vector>
@@ -43,7 +54,7 @@ class Alien : public GameObject{
 		Vec2 speed;
 		int hp;
 		std::queue<Action> taskQueue;
-		//std::vector<Minion> minionArray;
+		std::vector<Minion> minionArray;
 
 };
 

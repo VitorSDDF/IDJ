@@ -37,6 +37,22 @@ float Vec2::Magnitude(){
 
 }
 
+Vec2 Vec2::Normalize(){
+
+	float m = std::sqrt(y*y + x*x);
+
+	return(Vec2(x/m,y/m));
+
+}
+
+Vec2 Vec2::Rotate(float arch/*em radianos*/){
+
+	float x = this->x*std::cos(arch) - this->y*std::sin(arch);
+	float y = this->y*std::sin(arch) + this->y*std::cos(arch);
+
+	return(Vec2(x,y));
+}
+
 Vec2 Vec2::operator+(Vec2 const &b)const{
 
 	return Vec2(x+b.x, y+b.y);
@@ -51,7 +67,7 @@ Vec2 Vec2::operator-(Vec2 const &b) const{
 
 Vec2 Vec2::operator*(float b) const{
 
-	return Vec2(x*b, y*b);//esse aqui zoa a magnetude
+	return Vec2(x*b, y*b);
 
 }
 

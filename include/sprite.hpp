@@ -22,7 +22,7 @@ class Sprite{
 
 		void Open(std::string file);
 		void SetClip(int x,int y,int w,int h);
-		void Render(int x,int y);
+		void Render(int x,int y,float angle = 0);
 		int GetWidth();
 		int GetHeight();
 		bool IsOpen();

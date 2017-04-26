@@ -2,7 +2,7 @@ bin/alien.o: src/alien.cpp include/alien.hpp include/inputmanager.hpp \
  include/gameobject.hpp include/rect.hpp include/vec2.hpp \
  include/sprite.hpp include/game.hpp include/state.hpp include/camera.hpp \
  include/alien.hpp include/tileset.hpp include/tilemap.hpp \
- include/resources.hpp
+ include/resources.hpp include/minion.hpp
 
 include/alien.hpp:
 
@@ -29,3 +29,5 @@ include/tileset.hpp:
 include/tilemap.hpp:
 
 include/resources.hpp:
+
+include/minion.hpp:

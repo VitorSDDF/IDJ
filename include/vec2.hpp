@@ -21,7 +21,9 @@ class Vec2{
 		float GetY();
 
 		Vec2 Distance(Vec2 destino);
+		Vec2 Rotate(float arch/*em radianos*/);
 		float Magnitude();
+		Vec2 Normalize();
 
 		Vec2 operator+(Vec2 const &b) const;
 		Vec2 operator-(Vec2 const &b) const;

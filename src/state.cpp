@@ -7,7 +7,7 @@ State::State(){
     tileSet = new TileSet(64,64,std::string("img/tileset.png"));
     tileMap = new TileMap(std::string("map/tileMap.txt"),tileSet);
 
-    Alien* alien = new Alien(512,300,0);
+    Alien* alien = new Alien(512,300,4);
     objectArray.emplace_back(alien);
 
 	quitRequested = false;
