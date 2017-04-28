@@ -19,9 +19,8 @@ void Camera::Unfollow(){
 void Camera::Update(float dt){
 
 	if(focus != nullptr){
-
-		//centrar a câmera na tela
-		//pos = Game::GetInstance()->GetWindowDimensions()*0.5;
+		//Centrar a camera na tela
+		pos = Game::GetInstance()->GetWindowDimensions()*0.5;
 
 	}
 	else{

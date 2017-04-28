@@ -23,27 +23,6 @@ void Alien::Update(float dt){
 
 	arc -= ALIEN_ROTATION_VEL * dt;
 
-	if(InputManager::GetInstance().KeyPress(LEFT_ARROW_KEY) || InputManager::GetInstance().KeyPress('a')){
-
-		box->SetX(box->GetX() + CAMERA_MOVE_SPEED * dt);
-			
-	}
-	if(InputManager::GetInstance().KeyPress(RIGHT_ARROW_KEY)|| InputManager::GetInstance().KeyPress('d')){
-
-		box->SetX(box->GetX() - CAMERA_MOVE_SPEED * dt);
-
-	}
-	if(InputManager::GetInstance().KeyPress(UP_ARROW_KEY)|| InputManager::GetInstance().KeyPress('w')){
-
-		box->SetY(box->GetY() + CAMERA_MOVE_SPEED * dt);
-
-	}
-	if(InputManager::GetInstance().KeyPress(DOWN_ARROW_KEY)|| InputManager::GetInstance().KeyPress('s')){
-
-		box->SetY(box->GetY() - CAMERA_MOVE_SPEED * dt);
-
-	}
-
 	if(InputManager::GetInstance().MousePress(SDL_BUTTON_LEFT)){
 
 		//Cria e enfileira ação de tiro registrando a posicao do mouse
@@ -102,8 +81,7 @@ void Alien::Update(float dt){
 
 void Alien::Render(){
 
-	//Tratar movimentacao da camera
-	sp->Render(box->GetX(),box->GetY(),arc);
+	sp->Render(box->GetX() + Camera::pos.GetX(),box->GetY() + Camera::pos.GetY(),arc);
 	//Chamar a renderização de cada Minion.
 	for(unsigned int i = 0;i < minionArray.size();i++){
 

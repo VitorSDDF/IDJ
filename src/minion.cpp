@@ -16,27 +16,6 @@ Minion::Minion(GameObject* minionCenter,float arcOffset){
 }
 
 void Minion::Update(float dt){
-
-	if(InputManager::GetInstance().KeyPress(LEFT_ARROW_KEY) || InputManager::GetInstance().KeyPress('a')){
-
-		box->SetX(box->GetX() + CAMERA_MOVE_SPEED * dt);
-			
-	}
-	if(InputManager::GetInstance().KeyPress(RIGHT_ARROW_KEY)|| InputManager::GetInstance().KeyPress('d')){
-
-		box->SetX(box->GetX() - CAMERA_MOVE_SPEED * dt);
-
-	}
-	if(InputManager::GetInstance().KeyPress(UP_ARROW_KEY)|| InputManager::GetInstance().KeyPress('w')){
-
-		box->SetY(box->GetY() + CAMERA_MOVE_SPEED * dt);
-
-	}
-	if(InputManager::GetInstance().KeyPress(DOWN_ARROW_KEY)|| InputManager::GetInstance().KeyPress('s')){
-
-		box->SetY(box->GetY() - CAMERA_MOVE_SPEED * dt);
-
-	}
 	
 	arc += MINION_VEL * dt;
 	Vec2 offsetFromOrigin = Vec2(0,MINION_DISTANCE_FROM_CENTER).Rotate(arc);
@@ -49,9 +28,7 @@ void Minion::Update(float dt){
 
 void Minion::Render(){
 
-	//Levar em conta o posicionamento da camera
-	sp->Render(box->GetX(),box->GetY(),(arc * 180)/PI);
-
+	sp->Render(box->GetX() + Camera::pos.GetX(),box->GetY() + Camera::pos.GetY(),(arc * 180)/PI);
 
 }
 

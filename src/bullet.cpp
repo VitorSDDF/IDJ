@@ -24,7 +24,7 @@ void Bullet::Update(float dt){
 
 void Bullet::Render(){
 
-	sp->Render(box->GetX(),box->GetY(),rotation);
+	sp->Render(box->GetX() + Camera::pos.GetX(),box->GetY() + Camera::pos.GetY(),rotation);
 
 }
 bool Bullet::IsDead(){

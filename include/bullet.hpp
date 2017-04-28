@@ -5,6 +5,7 @@
 
 #include "gameobject.hpp"
 #include "sprite.hpp"
+#include "camera.hpp"
 
 class Bullet : public GameObject{
 
