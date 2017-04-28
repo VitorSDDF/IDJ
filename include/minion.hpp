@@ -1,14 +1,17 @@
-#define PI 3.14
+#define PI 3.14159
 
 #ifndef MINION_HPP
 #define MINION_HPP
 
-#define PI 3.14
-#define MINION_DISTANCE_FROM_CENTER 500
+#define MINION_DISTANCE_FROM_CENTER 200
+#define BULLET_VEL 20
+#define BULLET_REACH 300
 #include "gameobject.hpp"
 #include "vec2.hpp"
 #include "sprite.hpp"
+#include "bullet.hpp"
 
+#define MINION_VEL 1.57
 #define MINION_CLASS
 
 class Minion : public GameObject{
@@ -20,8 +23,6 @@ class Minion : public GameObject{
 		void Render();
 		bool IsDead();
 		void Shoot(Vec2 pos);
-
-		static constexpr float minionVel = PI/2;
 
 	private:
 

@@ -93,7 +93,9 @@ bool InputManager::KeyRelease(int key){
 
 bool InputManager::IsKeyDown(int key){
 
-	return(keyState.at(key) == true);
+	try{return(keyState.at(key) == true);}
+  	catch (const std::out_of_range& oor){}
+  	return false;
 
 }
 

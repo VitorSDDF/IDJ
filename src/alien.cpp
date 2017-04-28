@@ -7,11 +7,11 @@ Alien::Alien(float x,float y,int nMinions){
 	box = new Rect(x,y,sp->GetWidth(),sp->GetHeight());
 
 	hp = INITIAL_ALIEN_HP;
+	arc = 0;
 	//Popular array de minions quando o alien estiver funcional
 	for(int i = 0;i < nMinions; i++ ){
 
-		minionArray.push_back(Minion(this,(2* PI/nMinions) * i));
-		std::cout << "criou minion "<< i << std::endl;
+		minionArray.push_back(Minion(this,((2*PI)/nMinions) * i));
 
 	}
 
@@ -20,6 +20,29 @@ Alien::Alien(float x,float y,int nMinions){
 Alien::~Alien(){}
 
 void Alien::Update(float dt){
+
+	arc -= ALIEN_ROTATION_VEL * dt;
+
+	if(InputManager::GetInstance().KeyPress(LEFT_ARROW_KEY) || InputManager::GetInstance().KeyPress('a')){
+
+		box->SetX(box->GetX() + CAMERA_MOVE_SPEED * dt);
+			
+	}
+	if(InputManager::GetInstance().KeyPress(RIGHT_ARROW_KEY)|| InputManager::GetInstance().KeyPress('d')){
+
+		box->SetX(box->GetX() - CAMERA_MOVE_SPEED * dt);
+
+	}
+	if(InputManager::GetInstance().KeyPress(UP_ARROW_KEY)|| InputManager::GetInstance().KeyPress('w')){
+
+		box->SetY(box->GetY() + CAMERA_MOVE_SPEED * dt);
+
+	}
+	if(InputManager::GetInstance().KeyPress(DOWN_ARROW_KEY)|| InputManager::GetInstance().KeyPress('s')){
+
+		box->SetY(box->GetY() - CAMERA_MOVE_SPEED * dt);
+
+	}
 
 	if(InputManager::GetInstance().MousePress(SDL_BUTTON_LEFT)){
 
@@ -30,9 +53,7 @@ void Alien::Update(float dt){
 	if(InputManager::GetInstance().MousePress(SDL_BUTTON_RIGHT)){
 
 		//Cria e enfilera ação de movimento registrando a posicao do mouse
-		std::cout <<"MOVE" << std::endl;
 		taskQueue.push(Action(Action::MOVE,InputManager::GetInstance().GetMouseX(),InputManager::GetInstance().GetMouseY()));
-		std::cout << taskQueue.size() << std::endl;
 		//Trata movimentacao da camera
 
 	}
@@ -61,7 +82,11 @@ void Alien::Update(float dt){
 
 		}
 		else if(action.type == Action::SHOOT){
-		
+
+			int minion = 1 + rand() % (minionArray.size() - 1);
+
+			minionArray[minion].Shoot(action.pos);
+
 			taskQueue.pop();
 
 		}
@@ -78,7 +103,7 @@ void Alien::Update(float dt){
 void Alien::Render(){
 
 	//Tratar movimentacao da camera
-	sp->Render(box->GetX(),box->GetY());
+	sp->Render(box->GetX(),box->GetY(),arc);
 	//Chamar a renderização de cada Minion.
 	for(unsigned int i = 0;i < minionArray.size();i++){
 

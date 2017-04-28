@@ -26,22 +26,22 @@ void Camera::Update(float dt){
 	}
 	else{
 
-		if(InputManager::GetInstance().KeyPress(LEFT_ARROW_KEY) || InputManager::GetInstance().KeyPress('a')){
+		if(InputManager::GetInstance().IsKeyDown(LEFT_ARROW_KEY) || InputManager::GetInstance().IsKeyDown('a')){
 
 			pos.SetX(pos.GetX() + CAMERA_MOVE_SPEED * dt);
 			
 		}
-		if(InputManager::GetInstance().KeyPress(RIGHT_ARROW_KEY)|| InputManager::GetInstance().KeyPress('d')){
+		if(InputManager::GetInstance().IsKeyDown(RIGHT_ARROW_KEY)|| InputManager::GetInstance().IsKeyDown('d')){
 
 			pos.SetX(pos.GetX() - CAMERA_MOVE_SPEED * dt);
 
 		}
-		if(InputManager::GetInstance().KeyPress(UP_ARROW_KEY)|| InputManager::GetInstance().KeyPress('w')){
+		if(InputManager::GetInstance().IsKeyDown(UP_ARROW_KEY)|| InputManager::GetInstance().IsKeyDown('w')){
 
 			pos.SetY(pos.GetY() + CAMERA_MOVE_SPEED * dt);
 
 		}
-		if(InputManager::GetInstance().KeyPress(DOWN_ARROW_KEY)|| InputManager::GetInstance().KeyPress('s')){
+		if(InputManager::GetInstance().IsKeyDown(DOWN_ARROW_KEY)|| InputManager::GetInstance().IsKeyDown('s')){
 
 			pos.SetY(pos.GetY() - CAMERA_MOVE_SPEED * dt);
 

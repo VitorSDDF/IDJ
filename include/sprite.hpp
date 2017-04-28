@@ -26,6 +26,8 @@ class Sprite{
 		int GetWidth();
 		int GetHeight();
 		bool IsOpen();
+		void SetScaleX(float scale);
+		void SetScaleY(float scale);
 
 	private:
 
@@ -33,6 +35,9 @@ class Sprite{
 		int width;
 		int height;
 		SDL_Rect clipRect;
+
+		float scaleX;
+		float scaleY;
 
 };
 

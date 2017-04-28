@@ -29,8 +29,12 @@ void State::Update(){
     }
 
     Camera::Update(Game::GetInstance()->GetDeltaTime());
-        
-    ((Alien*) objectArray[0].get())->Update(Game::GetInstance()->GetDeltaTime());
+    
+    for(unsigned int i = 0;i < objectArray.size();i ++){
+
+        objectArray[i].get()->Update(Game::GetInstance()->GetDeltaTime());
+
+    }
 
 }
 
@@ -39,7 +43,12 @@ void State::Render(){
 	bg->Render(0,0);
 
     tileMap->Render(Camera::pos.GetX(),Camera::pos.GetY());
-	((Alien*) objectArray[0].get())->Render();
+
+    for(unsigned int i = 0;i < objectArray.size();i ++){
+	   
+       objectArray[i].get()->Render();
+
+    }
 
 }
 
@@ -48,5 +57,11 @@ bool State::QuitRequested(){return(quitRequested);}
 void State::LoadAssets(){
 	
 	bg->Open(std::string("img/ocean.jpg"));
+
+}
+
+void State::AddObject(GameObject* ptr){
+
+    objectArray.emplace_back(ptr);
 
 }

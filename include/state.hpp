@@ -17,7 +17,6 @@
 #include "tileset.hpp"
 #include "tilemap.hpp"
 
-#define PI 3.14
 #define HIPOTENUSA 200
 
 #ifndef SPRITE_CLASS
@@ -43,6 +42,7 @@ class State{
 		void LoadAssets();
 		void Update();
 		void Render();
+		void AddObject(GameObject* ptr);
 
 	private:
 

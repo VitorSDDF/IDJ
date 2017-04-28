@@ -48,9 +48,10 @@ Vec2 Vec2::Normalize(){
 Vec2 Vec2::Rotate(float arch/*em radianos*/){
 
 	float x = this->x*std::cos(arch) - this->y*std::sin(arch);
-	float y = this->y*std::sin(arch) + this->y*std::cos(arch);
+	float y = this->x*std::sin(arch) + this->y*std::cos(arch);
 
 	return(Vec2(x,y));
+
 }
 
 Vec2 Vec2::operator+(Vec2 const &b)const{

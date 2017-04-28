@@ -3,12 +3,16 @@
 Sprite::Sprite(){
 
 	this->texture = nullptr;
+	scaleX = 1.0;
+	scaleY = 1.0;
 
 }
 
 Sprite::Sprite(std::string file){
 
 	this->texture = nullptr;
+	scaleX = 1.0;
+	scaleY = 1.0;
 	Open(file);	
 
 }
@@ -34,7 +38,19 @@ void Sprite::SetClip (int x,int y,int w,int h){
 	clipRect.w = w;
 	clipRect.h = h;
 
-	}
+}
+
+void Sprite::SetScaleX(float scale){
+
+	this->scaleX = scale;
+
+}
+void Sprite::SetScaleY(float scale){
+
+	this->scaleY = scale;
+
+}
+
 
 void Sprite::Render(int x,int y,float angle){
 
@@ -42,8 +58,8 @@ void Sprite::Render(int x,int y,float angle){
 
 	dstrect.x = x;
 	dstrect.y = y;
-	dstrect.w = clipRect.w;
-	dstrect.h = clipRect.h;
+	dstrect.w = clipRect.w * scaleX;
+	dstrect.h = clipRect.h * scaleY;
 	
 	if(Game::GetInstance()->GetRenderer() == nullptr){printf( "%s\t%d\t\n", __FILE__, __LINE__ );exit(1);}
 	if(texture == nullptr){printf( "%s\t%d\t\n", __FILE__, __LINE__ );exit(1);}
@@ -55,12 +71,13 @@ void Sprite::Render(int x,int y,float angle){
 
 int Sprite::GetWidth(){
 
-	return(width);
+	return(width * scaleX);
+
 }
 
 int Sprite::GetHeight(){
 
-	return(height);
+	return(height * scaleY);
 
 }
 

@@ -1,4 +1,3 @@
-
 #ifndef ALIEN_HPP
 #define ALIEN_HPP
 
@@ -17,6 +16,7 @@ class Minion;
 #endif
 
 #define ALIEN_VEL 100
+#define ALIEN_ROTATION_VEL 10
 
 #include "inputmanager.hpp"
 #include "gameobject.hpp"
@@ -53,6 +53,7 @@ class Alien : public GameObject{
 		Sprite *sp;
 		Vec2 speed;
 		int hp;
+		float arc;
 		std::queue<Action> taskQueue;
 		std::vector<Minion> minionArray;
 
