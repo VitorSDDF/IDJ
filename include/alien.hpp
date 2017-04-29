@@ -26,6 +26,8 @@ class Minion;
 
 #include <queue>
 #include <vector>
+#include <cmath>
+#include <limits>
 
 class Alien : public GameObject{
 

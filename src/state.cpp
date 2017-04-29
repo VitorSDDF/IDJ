@@ -27,14 +27,14 @@ void State::Update(){
         quitRequested = true;
 
     }
-
-    Camera::Update(Game::GetInstance()->GetDeltaTime());
     
     for(unsigned int i = 0;i < objectArray.size();i ++){
 
         objectArray[i].get()->Update(Game::GetInstance()->GetDeltaTime());
 
     }
+
+    Camera::Update(Game::GetInstance()->GetDeltaTime());
 
 }
 

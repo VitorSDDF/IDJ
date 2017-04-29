@@ -62,10 +62,20 @@ void Alien::Update(float dt){
 		}
 		else if(action.type == Action::SHOOT){
 
-			int minion = 1 + rand() % (minionArray.size() - 1);
+			float min_distance = std::numeric_limits<float>::max();
+			unsigned int minion;
+
+			for(unsigned int i = 0;i < minionArray.size();i++){
+
+				if(min_distance > minionArray[i].box->Center().Distance(action.pos).Magnitude()){
+
+					min_distance = minionArray[i].box->Center().Distance(action.pos).Magnitude();
+					minion = i;
+
+				}
+			}
 
 			minionArray[minion].Shoot(action.pos);
-
 			taskQueue.pop();
 
 		}
