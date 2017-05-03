@@ -1,8 +1,8 @@
 #include "bullet.hpp"
 
-Bullet::Bullet(float x,float y,float angle,float speed,float maxDistance,std::string sprite){
+Bullet::Bullet(float x,float y,float angle,float speed,float maxDistance,std::string sprite,float frameCount,float frameTime){
 
-	this->sp = new Sprite(sprite);
+	this->sp = new Sprite(sprite,frameCount,frameTime);
 	this->box = new Rect(x,y,sp->GetWidth(),sp->GetHeight());
 	this->speed = Vec2(speed,0).Rotate(angle);
 	this->distanceLeft = maxDistance;
@@ -13,6 +13,8 @@ Bullet::Bullet(float x,float y,float angle,float speed,float maxDistance,std::st
 }
 
 void Bullet::Update(float dt){
+
+	sp->Update(dt);
 
 	box->SetX(box->GetX() + speed.GetX() * dt);
 	box->SetY(box->GetY() + speed.GetY() * dt);

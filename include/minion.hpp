@@ -3,8 +3,8 @@
 #ifndef MINION_HPP
 #define MINION_HPP
 
-#define MINION_DISTANCE_FROM_CENTER 200
-#define BULLET_VEL 20
+#define MINION_DISTANCE_FROM_CENTER 100
+#define BULLET_VEL 100
 #define BULLET_REACH 300
 
 #include "gameobject.hpp"

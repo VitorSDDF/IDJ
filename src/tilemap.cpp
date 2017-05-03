@@ -23,14 +23,14 @@ int& TileMap::At(int x,int y,int z){
 
 void TileMap::RenderLayer(int layer,int cameraX,int cameraY){
 
-	unsigned int dx,dy;
+	int dx,dy;
 
 	for(int x = 0;x < mapWidth; x++){
 
 		for(int y = 0;y < mapHeight; y++){
 
-			dx = tileSet->GetTileWidth() * (x + cameraX);
-			dy = tileSet->GetTileHeight() * (y + cameraY);
+			dx = tileSet->GetTileWidth() * x + cameraX;
+			dy = tileSet->GetTileHeight() *  y + cameraY;
 		
 			tileSet->Render(At(x,y,layer),dx,dy);
 

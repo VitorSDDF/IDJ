@@ -1,6 +1,9 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
+#define SPRITE_X 0
+#define SPRITE_Y 0
+
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
@@ -17,7 +20,7 @@ class Sprite{
 	public:
 
 		Sprite();
-		Sprite(std::string file);
+		Sprite(std::string file,int frameCount = 1,float frameTime = 1);
 		~Sprite();
 
 		void Open(std::string file);
@@ -28,6 +31,10 @@ class Sprite{
 		bool IsOpen();
 		void SetScaleX(float scale);
 		void SetScaleY(float scale);
+		void Update(float dt);
+		void SetFrame(int frame);
+		void SetFrameCount(int frameCount);
+		void SetFrameTime(float frameTime);
 
 	private:
 
@@ -38,6 +45,11 @@ class Sprite{
 
 		float scaleX;
 		float scaleY;
+
+		int frameCount;
+		int currentFrame;
+		float timeElapsed;
+		float frameTime;
 
 };
 

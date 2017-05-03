@@ -40,7 +40,7 @@ bool Minion::IsDead(){
 void Minion::Shoot(Vec2 pos){
 
 	float angle = std::atan2(box->Center().Distance(pos).GetY(),box->Center().Distance(pos).GetX());
-	Bullet* bullet = new Bullet(box->GetX(),box->GetY(),angle,BULLET_VEL,BULLET_REACH,std::string("img/minionbullet1.png"));
+	Bullet* bullet = new Bullet(box->Center().GetX(),box->Center().GetY(),angle,BULLET_VEL,BULLET_REACH,std::string("img/minionbullet2.png"),3);
 	Game::GetInstance()->GetState()->AddObject(bullet);
 
 }

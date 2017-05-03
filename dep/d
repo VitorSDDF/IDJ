@@ -1,23 +1,23 @@
-bin/tileset.o: src/tileset.cpp include/tileset.hpp include/sprite.hpp \
- include/game.hpp include/state.hpp include/gameobject.hpp \
- include/rect.hpp include/vec2.hpp include/inputmanager.hpp \
- include/camera.hpp include/alien.hpp include/minion.hpp \
- include/bullet.hpp include/tileset.hpp include/tilemap.hpp \
- include/resources.hpp
+bin/penguins.o: src/penguins.cpp include/penguins.hpp \
+ include/gameobject.hpp include/rect.hpp include/vec2.hpp \
+ include/sprite.hpp include/game.hpp include/state.hpp \
+ include/inputmanager.hpp include/camera.hpp include/alien.hpp \
+ include/minion.hpp include/bullet.hpp include/tileset.hpp \
+ include/tilemap.hpp include/resources.hpp
 
-include/tileset.hpp:
-
-include/sprite.hpp:
-
-include/game.hpp:
-
-include/state.hpp:
+include/penguins.hpp:
 
 include/gameobject.hpp:
 
 include/rect.hpp:
 
 include/vec2.hpp:
+
+include/sprite.hpp:
+
+include/game.hpp:
+
+include/state.hpp:
 
 include/inputmanager.hpp:
 
