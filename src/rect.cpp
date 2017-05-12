@@ -9,25 +9,25 @@ Rect::Rect(float x,float y,float w,float h){
 
 }
 
-float Rect::GetX(){
+float Rect::GetX() const{
 
 	return(this->x);
 
 }
 
-float Rect::GetY(){
+float Rect::GetY() const{
 
 	return(this->y);
 	
 }
 
-float Rect::GetW(){
+float Rect::GetW() const{
 
 	return(this->w);
 
 }
 
-float Rect::GetH(){
+float Rect::GetH() const{
 
 	return(this->h);
 

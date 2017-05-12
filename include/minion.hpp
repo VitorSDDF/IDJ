@@ -4,8 +4,6 @@
 #define MINION_HPP
 
 #define MINION_DISTANCE_FROM_CENTER 100
-#define BULLET_VEL 100
-#define BULLET_REACH 300
 
 #include "gameobject.hpp"
 #include "vec2.hpp"
@@ -25,6 +23,8 @@ class Minion : public GameObject{
 		void Render();
 		bool IsDead();
 		void Shoot(Vec2 pos);
+		void NotifyCollision(GameObject& other);
+		bool Is(std::string type);
 
 	private:
 

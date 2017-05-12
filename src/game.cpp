@@ -127,8 +127,6 @@ void Game::Run(){
 
 		SDL_RenderPresent(this->renderer);
 
-		//SDL_Delay(33);
-
 	}
 
 }

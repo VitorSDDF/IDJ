@@ -20,12 +20,12 @@ void Vec2::SetY(float y){
 
 }
 
-float Vec2::GetX(){
+float Vec2::GetX() const{
 
 	return(x);
 
 }
-float Vec2::GetY(){
+float Vec2::GetY() const{
 
 	return(y);
 

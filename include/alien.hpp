@@ -23,6 +23,7 @@ class Minion;
 #include "sprite.hpp"
 #include "minion.hpp"
 #include "camera.hpp"
+#include "animation.hpp"
 
 #include <queue>
 #include <vector>
@@ -39,6 +40,9 @@ class Alien : public GameObject{
 		void Update(float dt);
 		void Render();
 		bool IsDead();
+		void NotifyCollision(GameObject& other);
+		bool Is(std::string type);
+		void sumHP(int delta);
 
 	private:
 
@@ -57,6 +61,8 @@ class Alien : public GameObject{
 		Vec2 speed;
 		int hp;
 		float arc;
+		bool moving;
+		Vec2 camera;
 		std::queue<Action> taskQueue;
 		std::vector<Minion> minionArray;
 

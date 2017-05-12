@@ -17,8 +17,8 @@ class Vec2{
 		void SetX(float x);
 		void SetY(float y);
 
-		float GetX();
-		float GetY();
+		float GetX() const;
+		float GetY() const;
 
 		Vec2 Distance(Vec2 destino);
 		Vec2 Rotate(float arch/*em radianos*/);

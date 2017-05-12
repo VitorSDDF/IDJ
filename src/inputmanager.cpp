@@ -26,8 +26,6 @@ InputManager& InputManager::GetInstance(){
 
 }
 
-
-
 void InputManager::Update(){
 
 	SDL_Event event;

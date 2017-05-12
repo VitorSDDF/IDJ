@@ -39,8 +39,25 @@ bool Minion::IsDead(){
 }
 void Minion::Shoot(Vec2 pos){
 
-	float angle = std::atan2(box->Center().Distance(pos).GetY(),box->Center().Distance(pos).GetX());
-	Bullet* bullet = new Bullet(box->Center().GetX(),box->Center().GetY(),angle,BULLET_VEL,BULLET_REACH,std::string("img/minionbullet2.png"),3);
+	float angle = std::atan2((box->Center() + Camera::pos).Distance(pos).GetY(),(box->Center() + Camera::pos).Distance(pos).GetX());
+	Bullet* bullet = new Bullet(box->Center().GetX(),box->Center().GetY(),angle,BULLET_VEL,BULLET_REACH,std::string("img/minionbullet2.png"),true,3,0.1);
 	Game::GetInstance()->GetState()->AddObject(bullet);
+
+}
+
+void Minion::NotifyCollision(GameObject& other){
+
+
+	if(other.Is(std::string("Bullet")) && !(((Bullet&)other).TargetsPlayer())){
+
+		((Alien*)center)->sumHP(-1);
+
+	}
+
+}
+
+bool Minion::Is(std::string type){
+
+	return(type == "Minion");
 
 }

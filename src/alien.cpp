@@ -8,6 +8,7 @@ Alien::Alien(float x,float y,int nMinions){
 
 	hp = INITIAL_ALIEN_HP;
 	arc = 0;
+	moving = false;
 	//Popular array de minions quando o alien estiver funcional
 	for(int i = 0;i < nMinions; i++ ){
 
@@ -22,6 +23,8 @@ Alien::~Alien(){}
 void Alien::Update(float dt){
 
 	arc -= ALIEN_ROTATION_VEL * dt;
+
+	if(!moving){camera = Camera::pos;}
 
 	if(InputManager::GetInstance().MousePress(SDL_BUTTON_LEFT)){
 
@@ -39,21 +42,23 @@ void Alien::Update(float dt){
 	if(!taskQueue.empty()){
 
 		Action action = taskQueue.front();
-		float lastDistance = (action.pos - box->Center()).Magnitude();
+		float lastDistance = (camera + box->Center()).Distance(action.pos).Magnitude();
 
 		if(action.type == Action::MOVE){
 
-			speed = (box->Center().Distance(action.pos)).Normalize() * ALIEN_VEL;
+			speed = (box->Center() + camera).Distance(action.pos).Normalize() * ALIEN_VEL;
 
-			if((speed * dt).Magnitude() > lastDistance){
+			if((speed * dt).Magnitude() >= lastDistance){
 
-				box->SetX(action.pos.GetX() - (box->GetW()/2));
-				box->SetY(action.pos.GetY() - (box->GetH()/2));
+				box->SetX(action.pos.GetX() - camera.GetX() - (box->GetW()/2));
+				box->SetY(action.pos.GetY() - camera.GetY() - (box->GetH()/2));
+				moving = false;
 				taskQueue.pop();
 
 			}
 			else{
 
+				moving = true;
 				box->SetX(box->Center().GetX() + (speed * dt).GetX() - box->GetW()/2);
 				box->SetY(box->Center().GetY() + (speed * dt).GetY() - box->GetH()/2);
 
@@ -67,9 +72,9 @@ void Alien::Update(float dt){
 
 			for(unsigned int i = 0;i < minionArray.size();i++){
 
-				if(min_distance > minionArray[i].box->Center().Distance(action.pos).Magnitude()){
+				if(min_distance > (minionArray[i].box->Center() + camera).Distance(action.pos).Magnitude()){
 
-					min_distance = minionArray[i].box->Center().Distance(action.pos).Magnitude();
+					min_distance = (minionArray[i].box->Center() + camera).Distance(action.pos).Magnitude();
 					minion = i;
 
 				}
@@ -112,3 +117,31 @@ Alien::Action::Action(ActionType type,float x,float y){
 	pos = Vec2(x,y);
 
 }
+
+void Alien::NotifyCollision(GameObject& other){
+
+	if(other.Is(std::string("Bullet")) && !(((Bullet&)other).TargetsPlayer())){
+
+		hp --;
+
+		if(IsDead()){
+
+			Game::GetInstance()->GetState()->AddObject(new Animation(box->GetX(),box->GetY(),rotation * 180 / PI,"img/aliendeath.png",4,0.1,true));
+
+		}
+
+	}
+
+}
+bool Alien::Is(std::string type){
+
+return(type == "Alien");
+
+}
+
+void Alien::sumHP(int delta){
+
+	hp = hp + delta;
+
+}
+

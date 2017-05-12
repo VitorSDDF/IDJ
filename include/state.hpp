@@ -16,6 +16,8 @@
 #include <iterator>
 #include "tileset.hpp"
 #include "tilemap.hpp"
+#include "penguins.hpp"
+#include "collision.h"
 
 #define HIPOTENUSA 200
 
