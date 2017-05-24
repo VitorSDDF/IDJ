@@ -19,7 +19,7 @@ class Animation : public GameObject{
 		void Update(float);
 		void Render();
 		bool IsDead();
-		//void NotifyCollision(GameObject* other);
+		void NotifyCollision(GameObject& other);
 		bool Is(std::string type);
 
 	private:
@@ -28,7 +28,6 @@ class Animation : public GameObject{
 		float timeLimit;
 		bool oneTimeOnly;
 		Sprite *sp;
-		bool ends;
 		
 };
 

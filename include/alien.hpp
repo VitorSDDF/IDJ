@@ -1,8 +1,6 @@
 #ifndef ALIEN_HPP
 #define ALIEN_HPP
 
-#define INITIAL_ALIEN_HP 5
-
 #ifndef SPRITE_CLASS
 class Sprite;
 #endif
@@ -15,8 +13,10 @@ class Sprite;
 class Minion;
 #endif
 
-#define ALIEN_VEL 100
+#define INITIAL_ALIEN_HP 30
+#define ALIEN_VEL 80
 #define ALIEN_ROTATION_VEL 10
+#define ALIEN_COOLDOWN 3
 
 #include "inputmanager.hpp"
 #include "gameobject.hpp"
@@ -24,6 +24,8 @@ class Minion;
 #include "minion.hpp"
 #include "camera.hpp"
 #include "animation.hpp"
+#include "timer.hpp"
+#include "sound.hpp"
 
 #include <queue>
 #include <vector>
@@ -44,27 +46,19 @@ class Alien : public GameObject{
 		bool Is(std::string type);
 		void sumHP(int delta);
 
+		static int alienCount;
+
 	private:
-
-		class Action{
-			public:
-
-				enum ActionType{MOVE,SHOOT};
-
-				Action(ActionType type,float x,float y);
-				ActionType type;
-				Vec2 pos;
-			
-		};
 
 		Sprite *sp;
 		Vec2 speed;
 		int hp;
 		float arc;
-		bool moving;
-		Vec2 camera;
-		std::queue<Action> taskQueue;
 		std::vector<Minion> minionArray;
+		enum AlienState{MOVING,RESTING} alienState;
+		AlienState state;
+		Timer restTimer;
+		Vec2 destination;
 
 };
 

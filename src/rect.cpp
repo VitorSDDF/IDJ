@@ -1,5 +1,7 @@
 #include "rect.hpp"
 
+Rect::Rect(){}
+
 Rect::Rect(float x,float y,float w,float h){
 
 	this->x = x;
@@ -54,4 +56,5 @@ void Rect::SetX(float x){
 void Rect::SetY(float y){
 
 	this->y = y;
+	
 }

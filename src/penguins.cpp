@@ -1,5 +1,7 @@
 #include "penguins.hpp"
 
+Penguins* Penguins::player = nullptr;
+
 Penguins::Penguins(float x,float y){
 
 	this->player = this;
@@ -19,7 +21,6 @@ Penguins::Penguins(float x,float y){
 
 Penguins::~Penguins(){
 
-	player = nullptr;
 
 }
 
@@ -65,8 +66,8 @@ void Penguins::Update(float dt){
 
 		}
 		if(InputManager::GetInstance().MousePress(SDL_BUTTON_RIGHT)){
+
 			if(bulletsCoolDown.Get() > PENGUIN_MAX_BULLET_COOLDOWN){
-				std::cout << "Entrou 2" <<std::endl;
 				bulletsCoolDown.Restart();
 				Shoot();
 
@@ -104,8 +105,9 @@ bool Penguins::IsDead(){
 void Penguins::Shoot(){
 
 	//Falta fazer com que o tiro saia da ponta do canhão
-	Bullet* bullet = new Bullet(box->GetX(),box->GetY(),cannonAngle,BULLET_VEL,BULLET_REACH,std::string("img/penguinbullet.png"),false,4,0.25);
-	Game::GetInstance()->GetState()->AddObject(bullet);
+	Vec2 bulletInitPos = Vec2(PENGUIN_CANNON_LENGHT,0).Rotate(cannonAngle) + box->Center();
+	Bullet* bullet = new Bullet(bulletInitPos.GetX(),bulletInitPos.GetY(),cannonAngle,BULLET_VEL,BULLET_REACH,std::string("img/penguinbullet.png"),false,4,0.25);
+	Game::GetInstance()->GetCurrentState().AddObject(bullet);
 
 }
 
@@ -115,14 +117,16 @@ void Penguins::NotifyCollision(GameObject& other){
 
 		hp --;
 		if(IsDead()){
-
-			Game::GetInstance()->GetState()->AddObject(new Animation(box->GetX(),box->GetY(),rotation * 180 / PI,img/penguindeath.png,5,0.1,true));
+		
+			Penguins::player = nullptr;
+			Camera::Unfollow();
+			Sound explosao = Sound("audio/boom.wav");
+			explosao.Play(1);
+			Game::GetInstance()->GetCurrentState().AddObject(new Animation(box->GetX(),box->GetY(),rotation * 180 / PI,"img/penguindeath.png",5,0.1,true));
 
 		}
 
 	}
-
-	if(hp <= 0){Camera::Unfollow();}
 
 }
 

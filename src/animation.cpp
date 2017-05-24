@@ -5,7 +5,7 @@ Animation::Animation(float x,float y,float rotation,std::string sprite,int frame
 	this->sp = new Sprite(sprite,frameCount,frameTime);
 	this->box = new Rect(x,y,sp->GetWidth(),sp->GetHeight());
 	this->rotation = rotation;//Converte para graus
-	this->ends = ends;
+	this->oneTimeOnly = ends;
 	this->timeLimit = frameCount * frameTime;
 
 }
@@ -23,7 +23,12 @@ void Animation::Render(){
 }
 bool Animation::IsDead(){
 
-	return(ends && endTimer.Get() > timeLimit);
+	return(oneTimeOnly && endTimer.Get() > timeLimit);
+
+}
+void Animation::NotifyCollision(GameObject& other){ 
+
+	oneTimeOnly = true;
 
 }
 

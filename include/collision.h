@@ -1,3 +1,6 @@
+#ifndef COLISION_HPP
+#define COLISION_HPP
+
 #include <cmath>
 #include <algorithm>
 
@@ -86,3 +89,5 @@ class Collision {
 // Vec2 operator*(const float rhs) const {
 //    return Vec2(x * rhs, y * rhs);
 // }
+
+#endif

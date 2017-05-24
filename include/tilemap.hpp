@@ -7,9 +7,7 @@
 #include <stdio.h>
 
 #ifndef TILESET_CLASS
-
 class TileSet;
-
 #endif
 
 #define TILEMAP_CLASS

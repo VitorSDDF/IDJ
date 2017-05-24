@@ -1,3 +1,5 @@
-bin/timer.o: src/timer.cpp include/timer.hpp
+bin/rect.o: src/rect.cpp include/rect.hpp include/vec2.hpp
 
-include/timer.hpp:
+include/rect.hpp:
+
+include/vec2.hpp:

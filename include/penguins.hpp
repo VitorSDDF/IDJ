@@ -5,6 +5,7 @@
 #include "sprite.hpp"
 #include "timer.hpp"
 #include "animation.hpp"
+#include "sound.hpp"
 
 #define PENGUIN_INITIAL_HP 30
 #define PENGUIN_ACCELERATION 5
@@ -15,6 +16,7 @@
 #define PENGUIN_ANGULAR_SPEED 4
 #define CANNON_INITIAL_ROTATION 0
 #define CANNON_INITIAL_ANGLE 0
+#define PENGUIN_CANNON_LENGHT 50
 
 #ifndef SPRITE_CLASS
 class Sprite;
@@ -33,7 +35,7 @@ class Penguins : public GameObject{
 		void Shoot();
 		void NotifyCollision(GameObject& other);
 		bool Is(std::string type);
-		Penguins* player;
+		static Penguins* player;
 
 	private:
 

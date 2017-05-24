@@ -7,6 +7,7 @@
 #include "SDL2/SDL_ttf.h"
 
 #include "state.hpp"
+#include "stagestate.hpp"
 #include "inputmanager.hpp"
 #include "vec2.hpp"
 
@@ -14,6 +15,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <stack>
 
 class State;
 
@@ -26,10 +28,9 @@ class Game{
 		~Game();
 		void Run();
 		SDL_Renderer *GetRenderer();
-		State *GetState();
+		State& GetCurrentState();
 		static Game *GetInstance();
-		void SetState(State* state);
-
+		void Push(State* state);
 		float GetDeltaTime();
 		Vec2 GetWindowDimensions(void);
 
@@ -44,7 +45,8 @@ class Game{
    		static Game *m_pInstance;
 		SDL_Window *window;
 		SDL_Renderer *renderer;
-		State *state;
+		State* storedState;
+		std::stack<std::unique_ptr<State>> stateStack;
 
 		int frameStart;
 		float dt;

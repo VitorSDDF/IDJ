@@ -20,8 +20,6 @@ void Bullet::Update(float dt){
 
 	distanceLeft -= speed.Magnitude() * dt;
 
-	std::cout <<distanceLeft <<std::endl;
-
 }
 
 void Bullet::Render(){
