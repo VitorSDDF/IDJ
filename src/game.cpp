@@ -46,9 +46,9 @@ Game::Game(std::string title,int witdh,int height){
         	SDL_LogError(SDL_LOG_CATEGORY_ERROR,"Unable to initialize SDL: %s\n", SDL_GetError());
 
     	}
-	Mix_Init​(MIX_INIT_MP3);
+	Mix_Init(MIX_INIT_MP3);
 
-	if(Mix_OpenAudio​(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024)){
+	if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024)){
 
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR,"Unable to initialize SDL: %s\n", SDL_GetError());
 			
@@ -71,7 +71,7 @@ Game::Game(std::string title,int witdh,int height){
 
  Game::~Game(){
 
- 	TTF_Quit()
+ 	TTF_Quit();
 	IMG_Quit();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
@@ -151,6 +151,7 @@ void Game::Run(){
 
 		if(stateStack.top().get()->PopRequested()){
 
+			stateStack.top().get()->Pause();
 			stateStack.pop();
 			stateStack.top().get()->Resume();
 

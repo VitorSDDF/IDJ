@@ -1,5 +1,10 @@
+#ifndef TEXT_HPP
+#define TEXT_HPP
+
 #include "SDL2/SDL_ttf.h"
+#include "resources.hpp"
 #include "rect.hpp"
+#include "SDL2/SDL.h"
 #include <iostream>
 
 class Text{
@@ -7,6 +12,7 @@ class Text{
 	public:
 
 		enum TextStyle{SOLID,SHADED,BLENDED} textStyle;
+		Text();
 		Text(std::string fontFile,int fontSize,TextStyle style,std::string text,SDL_Color color,int x = 0,int y = 0);
 
 		~Text();
@@ -16,6 +22,7 @@ class Text{
 		void SetColor(SDL_Color color);
 		void SetStyle(TextStyle style);
 		void SetFontSize(int fontSize);
+		Vec2 GetSize();
 
 	private:
 
@@ -29,3 +36,5 @@ class Text{
 		Rect box;
 
 };
+
+#endif

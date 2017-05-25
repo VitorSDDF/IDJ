@@ -5,6 +5,7 @@
 #include "gameobject.hpp"
 #include "timer.hpp"
 #include "sprite.hpp"
+#include "camera.hpp"
 
 #ifndef SPRITE_CLASS
 class Sprite;

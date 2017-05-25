@@ -22,7 +22,8 @@ Alien::Alien(float x,float y,int nMinions){
 }
 
 Alien::~Alien(){
-
+	
+	std::cout << "Chamou destrutor alien" <<std::endl;
 	alienCount --;
 
 }

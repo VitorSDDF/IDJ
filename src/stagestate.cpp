@@ -2,7 +2,7 @@
 
 StageState::~StageState(){
 
-	//objectArray.clear();
+	objectArray.clear();
 
 }
 
@@ -15,8 +15,16 @@ StageState::StageState(){
 
     music = Music("audio/stageState.ogg");
     music.Play(-1);
-    Alien* alien = new Alien(512,300,4);
-    objectArray.emplace_back(alien);
+
+    Vec2 windowDimension = Game::GetInstance()->GetWindowDimensions();
+    Alien* alien;
+
+    for(unsigned int i = 0;i < NUMBER_OF_ALIENS;i ++){
+
+    	alien = new Alien (rand() % (int)(windowDimension.GetX() * 2), rand() % (int)(windowDimension.GetY() * 2), (rand() % 6) + 1);
+    	objectArray.emplace_back(alien);
+
+    }
 
     Penguins* penguins = new Penguins(704,640);
     objectArray.emplace_back(penguins);
@@ -26,17 +34,40 @@ StageState::StageState(){
 
 void StageState::Update(){
 
-    Camera::Update(Game::GetInstance()->GetDeltaTime());
-    UpdateArray(Game::GetInstance()->GetDeltaTime());
+	if(InputManager::GetInstance().QuitRequested()){
 
+        quitRequested = true;
+
+    }
     if(InputManager::GetInstance().KeyPress(SDLK_ESCAPE)){
 
     	popRequested = true;
 
     }
+
+    if(Penguins::player == nullptr){
+
+		popRequested = true;
+		Game::GetInstance()->Push(new EndState(StateData(false)));
+
+	}
+	else if (Alien::alienCount == 0){
+
+		popRequested = true;
+		Game::GetInstance()->Push(new EndState(StateData(true)));
+
+	}
+
+    Camera::Update(Game::GetInstance()->GetDeltaTime());
+    UpdateArray(Game::GetInstance()->GetDeltaTime());
+
+    //std::cout << Alien::alienCount <<std::endl;
+
 }
 
 void StageState::Render(){
+
+	bg->Render(0,0);
 
     tileMap->RenderLayer(0,Camera::pos.GetX(),Camera::pos.GetY());
     RenderArray();
@@ -66,9 +97,12 @@ void StageState::Render(){
 void StageState::LoadAssets(){
 	
 	bg->Open(std::string("img/ocean.jpg"));
-	bg->Open(std::string("img/title.jpg"));
 
 }
 
-void StageState::Pause(){}
+void StageState::Pause(){
+
+	music.Stop();
+
+}
 void StageState::Resume(){}

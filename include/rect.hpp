@@ -16,7 +16,9 @@ class Rect{
 		float GetH() const;		
 		bool IsInside(float x,float y);
 		void SetX(float x);
-		void SetY(float x);
+		void SetY(float y);
+		void SetW(float w);
+		void SetH(float h);
 
 		Vec2 Center();
 

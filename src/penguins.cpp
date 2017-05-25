@@ -80,8 +80,38 @@ void Penguins::Update(float dt){
 		speed = Vec2(linearSpeed,0).Rotate(rotation);
 
 		//Atualiza posicao
-		box->SetX(box->Center().GetX() + (speed * dt).GetX() - box->GetW()/2);
-		box->SetY(box->Center().GetY() + (speed * dt).GetY() - box->GetH()/2);
+		Vec2 pos = box->Center();
+		Vec2 diff = Vec2(box->GetX(),box->GetY()) - box->Center();
+
+		if(PENGUIM_MAX_BOX_X < pos.GetX()){
+
+			box->SetX(PENGUIM_MAX_BOX_X + diff.GetX());
+
+		}
+		else if(PENGUIM_MIN_BOX_X > pos.GetX()){
+
+			box->SetX(PENGUIM_MIN_BOX_X + diff.GetX());
+
+		}
+		else{
+
+			box->SetX(box->Center().GetX() + (speed * dt).GetX() - box->GetW()/2);
+
+		}
+		if(PENGUIM_MAX_BOX_Y < pos.GetY()){
+
+			box->SetY(PENGUIM_MAX_BOX_Y + diff.GetY());
+
+		}
+		else if(PENGUIM_MIN_BOX_Y > pos.GetY()){
+
+			box->SetY(PENGUIM_MIN_BOX_Y + diff.GetY());
+		}
+		else{
+
+			box->SetY(box->Center().GetY() + (speed * dt).GetY() - box->GetH()/2);
+
+		}
 
 		Vec2 mousePos(InputManager::GetInstance().GetMouseX(),InputManager::GetInstance().GetMouseY());
 		Vec2 distance = (box->Center() + Camera::pos).Distance(mousePos);

@@ -1,3 +1,5 @@
+#define PI 3.14159
+
 #ifndef PENGUINS_HPP
 #define PENGUINS_HPP
 
@@ -6,8 +8,10 @@
 #include "timer.hpp"
 #include "animation.hpp"
 #include "sound.hpp"
+#include "camera.hpp"
+#include "bullet.hpp"
 
-#define PENGUIN_INITIAL_HP 30
+#define PENGUIN_INITIAL_HP 1
 #define PENGUIN_ACCELERATION 5
 #define PENGUIN_LINEAR_SPEED 30
 #define PENGUIN_MAX_LINEAR_SPEED 60
@@ -17,6 +21,10 @@
 #define CANNON_INITIAL_ROTATION 0
 #define CANNON_INITIAL_ANGLE 0
 #define PENGUIN_CANNON_LENGHT 50
+#define PENGUIM_MIN_BOX_X 0
+#define PENGUIM_MIN_BOX_Y 0
+#define PENGUIM_MAX_BOX_X 1408
+#define PENGUIM_MAX_BOX_Y 1280
 
 #ifndef SPRITE_CLASS
 class Sprite;

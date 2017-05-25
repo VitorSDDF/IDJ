@@ -22,6 +22,7 @@ class Minion;
 #include "gameobject.hpp"
 #include "sprite.hpp"
 #include "minion.hpp"
+#include "penguins.hpp"
 #include "camera.hpp"
 #include "animation.hpp"
 #include "timer.hpp"

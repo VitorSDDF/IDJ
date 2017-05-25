@@ -1,3 +1,5 @@
+#define PI 3.14159
+
 #ifndef BULLET_HPP
 #define BULLET_HPP
 

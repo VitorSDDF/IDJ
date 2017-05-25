@@ -7,9 +7,9 @@
 #include "SDL2/SDL_ttf.h"
 
 #include "state.hpp"
-#include "stagestate.hpp"
 #include "inputmanager.hpp"
 #include "vec2.hpp"
+#include "resources.hpp"
 
 #include <string>
 #include <iostream>

@@ -10,6 +10,7 @@
 #include "sprite.hpp"
 #include "bullet.hpp"
 #include "camera.hpp"
+#include "alien.hpp"
 
 #define MINION_VEL 1.57
 #define MINION_CLASS

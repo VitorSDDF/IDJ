@@ -58,3 +58,14 @@ void Rect::SetY(float y){
 	this->y = y;
 	
 }
+void Rect::SetH(float h){
+
+	this->h = h;
+
+}
+
+void Rect::SetW(float w){
+
+	this->w = w;
+	
+}

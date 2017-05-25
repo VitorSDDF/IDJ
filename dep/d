@@ -1,5 +1,19 @@
-bin/rect.o: src/rect.cpp include/rect.hpp include/vec2.hpp
+bin/camera.o: src/camera.cpp include/camera.hpp include/vec2.hpp \
+ include/gameobject.hpp include/rect.hpp include/game.hpp \
+ include/state.hpp include/inputmanager.hpp include/resources.hpp
+
+include/camera.hpp:
+
+include/vec2.hpp:
+
+include/gameobject.hpp:
 
 include/rect.hpp:
 
-include/vec2.hpp:
+include/game.hpp:
+
+include/state.hpp:
+
+include/inputmanager.hpp:
+
+include/resources.hpp:

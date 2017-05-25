@@ -2,6 +2,7 @@
 #define STAGE_STATE_HPP
 
 #include "state.hpp"
+#include "endstate.hpp"
 #include "tileset.hpp"
 #include "tilemap.hpp"
 #include "penguins.hpp"
@@ -16,6 +17,8 @@
 #include <ctime>
 #include <cmath>
 #include <iterator>
+
+#define NUMBER_OF_ALIENS 4
 
 #ifndef SPRITE_CLASS
 class Sprite;
